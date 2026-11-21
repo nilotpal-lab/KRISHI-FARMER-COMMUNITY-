@@ -1,0 +1,67 @@
+.badgeContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 6px 0 10px 0;
+  padding: 6px 10px;
+  background-color: var(--color-surface-sunken, #f4f6f0);
+  border: 1px solid var(--color-border-subtle, #e0e5d5);
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--color-text-secondary, #4a5d4e);
+}
+
+.badgeTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+  color: var(--color-primary-dark, #234d20);
+}
+
+.toggleBtn {
+  background: none;
+  border: none;
+  color: var(--color-primary, #2d6a4f);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 8px 6px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.toggleBtn:hover, .toggleBtn:focus-visible {
+  background-color: rgba(45, 106, 79, 0.08);
+  outline: none;
+}
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  margin: 8px 0;
+}
+
+.skeletonLine {
+  height: 14px;
+  background: linear-gradient(90deg, #e8ebe4 25%, #f4f6f0 50%, #e8ebe4 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

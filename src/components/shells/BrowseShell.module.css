@@ -1,0 +1,91 @@
+.subpageMain {
+  padding-top: calc(var(--nav, 72px) + 40px);
+  padding-bottom: clamp(48px, 6vh, 80px);
+  min-height: calc(100vh - 120px);
+}
+
+.demoBarWrap {
+  background-color: var(--color-sun, #ece9db);
+  border-bottom: 1px solid var(--color-line, rgba(23, 40, 29, 0.12));
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.langBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--color-line, rgba(23, 40, 29, 0.12));
+  border-radius: var(--radius-sm, 4px);
+  padding: 6px 10px;
+  font-size: var(--font-size-xs, 12px);
+  font-weight: 500;
+  color: var(--p-ink, #17281d);
+  cursor: pointer;
+  transition: all var(--transition-fast, 140ms ease);
+}
+
+.langBtn:hover {
+  background-color: var(--color-surface-subtle, #e9eae0);
+}
+
+.langBtn:focus-visible {
+  outline: 2px solid var(--color-focus, #1b5a92);
+}
+
+/* Footer layout override to prevent CTA button overlap with columns (Fix for Screenshot 1) */
+.footerOverride {
+  height: auto !important;
+  min-height: calc(var(--h, 1) * 100svh) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding-top: clamp(64px, 8vh, 96px) !important;
+  padding-bottom: calc(var(--padb, 48px) + var(--bar, 0px)) !important;
+}
+
+.footerOverride > :global(.wrap) {
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: clamp(48px, 6vh, 64px) !important;
+}
+
+.footerOverride :global(.closing__cta) {
+  min-height: auto !important;
+  flex: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--s-5, 24px) !important;
+}
+
+.footerOverride :global(.closing__cta .section-head) {
+  margin-bottom: 0 !important;
+}
+
+.footerOverride :global(.closing__links) {
+  min-height: auto !important;
+  flex: none !important;
+  display: grid !important;
+  gap: var(--s-7, 40px) !important;
+  padding-top: clamp(32px, 4vh, 48px) !important;
+}
+
+.credits {
+  color: var(--p-ink, #17281d) !important;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.footerOverride a,
+.footerOverride :global(.btn) {
+  transition: none !important;
+}
+
+.footerOverride a:hover,
+.footerOverride a:active,
+.footerOverride :global(.btn:hover),
+.footerOverride :global(.btn:active) {
+  transition: background-color 140ms ease, color 140ms ease !important;
+}

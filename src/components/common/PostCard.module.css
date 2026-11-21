@@ -1,0 +1,121 @@
+.metaHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-xs, 8px);
+  font-size: var(--font-size-xs, 12px);
+  color: var(--p-muted, #5d695e);
+  margin-bottom: var(--space-xs, 8px);
+}
+
+.authorGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs, 8px);
+}
+
+.authorName {
+  font-weight: 600;
+  color: var(--p-ink, #17281d);
+}
+
+.dot {
+  color: var(--p-muted, #5d695e);
+}
+
+.groupLink {
+  color: var(--p-action, #1f5134);
+  font-weight: 600;
+  text-decoration: none;
+  background-color: var(--color-mint, #e9efe8);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm, 4px);
+  font-size: 11px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  touch-action: manipulation;
+}
+
+.groupLink:hover {
+  text-decoration: underline;
+  background-color: #dbe6da;
+}
+
+.timeTag {
+  color: var(--p-muted, #5d695e);
+  font-size: 11px;
+}
+
+.title {
+  font-family: var(--font-display, var(--font-text));
+  font-size: var(--font-size-md, 18px);
+  font-weight: 700;
+  color: var(--p-ink, #17281d);
+  line-height: var(--line-height-tight, 1.25);
+  margin: 0 0 var(--space-xs, 8px) 0;
+  overflow-wrap: anywhere;
+}
+
+.excerpt {
+  font-size: var(--font-size-base, 14px);
+  color: var(--p-ink, #17281d);
+  line-height: var(--line-height-normal, 1.55);
+  margin: 0 0 var(--space-md, 16px) 0;
+  overflow-wrap: anywhere;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: var(--space-sm, 12px);
+  border-top: 1px solid var(--color-line, rgba(23, 40, 29, 0.08));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Reddit & Twitter style Action Bar */
+.actionBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actionPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--color-line, rgba(23, 40, 29, 0.12));
+  border-radius: var(--radius-sm, 6px);
+  padding: 6px 12px;
+  min-height: 44px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--p-muted, #4b5d52);
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .actionPill:hover {
+    background-color: var(--color-mint, #e9efe8);
+    color: var(--p-action, #1f5134);
+    border-color: var(--p-action, #1f5134);
+  }
+}
+
+.actionPill:active {
+  transform: scale(0.97);
+}
+
+.upvoted {
+  background-color: var(--color-mint, #e9efe8);
+  color: var(--p-action, #1f5134);
+  border-color: var(--p-action, #1f5134);
+  font-weight: 700;
+}

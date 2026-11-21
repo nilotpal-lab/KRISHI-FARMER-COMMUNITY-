@@ -1,0 +1,127 @@
+.mainContent {
+  padding-top: calc(var(--nav, 72px) + 40px);
+  padding-bottom: clamp(48px, 6vh, 80px);
+  min-height: calc(100vh - 140px);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs, 8px);
+  font-size: var(--font-size-base, 15px);
+  font-weight: 500;
+  color: var(--p-action, #1f5134);
+  text-decoration: none;
+  min-height: 44px;
+  flex-shrink: 0;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.headerTitle {
+  font-family: var(--font-display, var(--font-text));
+  font-size: var(--font-size-base, 16px);
+  font-weight: 600;
+  color: var(--p-ink, #17281d);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.langBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--color-line, rgba(23, 40, 29, 0.12));
+  border-radius: var(--radius-sm, 4px);
+  padding: 6px 10px;
+  font-size: var(--font-size-xs, 12px);
+  font-weight: 500;
+  color: var(--p-ink, #17281d);
+  cursor: pointer;
+  transition: all var(--transition-fast, 140ms ease);
+  flex-shrink: 0;
+}
+
+.langBtn:hover {
+  background-color: var(--color-surface-subtle, #e9eae0);
+}
+
+.langBtn:focus-visible {
+  outline: 2px solid var(--color-focus, #1b5a92);
+}
+
+/* Task shell footer (quiet, unslop, appropriate for task views) */
+.taskFooter {
+  background-color: var(--p-bg, #f7f6f0);
+  border-top: 1px solid var(--color-line, rgba(23, 40, 29, 0.12));
+  padding: 40px 0 calc(32px + var(--bar, 0px));
+  margin-top: auto;
+}
+
+.footerRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-line, rgba(23, 40, 29, 0.08));
+}
+
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 320px;
+}
+
+.footerSub {
+  font-size: 13px;
+  color: var(--p-muted, #4b5d52);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.footerNav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footerNav a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--p-ink, #17281d);
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.footerNav a:hover {
+  color: var(--p-action, #1f5134);
+  text-decoration: underline;
+}
+
+.footerLegal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 20px;
+  font-size: 12px;
+  color: var(--p-muted, #4b5d52);
+}
+
+.credits {
+  color: var(--p-ink, #17281d) !important;
+  font-size: 12px;
+  opacity: 0.9;
+}

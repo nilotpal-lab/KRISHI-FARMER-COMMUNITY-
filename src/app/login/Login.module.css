@@ -1,0 +1,99 @@
+.container {
+  max-width: 440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.titleArea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  text-align: center;
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.notice {
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+  line-height: var(--line-height-normal);
+}
+
+.demoHelpBox {
+  background-color: var(--color-mint);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+  padding: var(--space-md);
+  font-size: var(--font-size-xs);
+  color: var(--color-leaf-pressed);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.demoHelpTitle {
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.showPasswordBtn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: var(--color-leaf);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+  min-height: 24px;
+}
+
+.showPasswordBtn:hover {
+  text-decoration: underline;
+}
+
+.errorBanner {
+  background-color: var(--color-danger-bg);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-control);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.footerLinks {
+  text-align: center;
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-sm);
+}

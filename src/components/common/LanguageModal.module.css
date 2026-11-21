@@ -1,0 +1,53 @@
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.optionItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--color-line);
+  background-color: var(--color-surface);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 48px;
+}
+
+.optionItem:hover {
+  background-color: var(--color-mint);
+  border-color: var(--color-leaf);
+}
+
+.selected {
+  border-color: var(--color-leaf);
+  background-color: var(--color-mint);
+  font-weight: 700;
+}
+
+.labelWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.selfLabel {
+  font-size: var(--font-size-base);
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.englishLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-muted);
+}
+
+.radioInput {
+  accent-color: var(--color-leaf);
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}

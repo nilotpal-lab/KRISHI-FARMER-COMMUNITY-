@@ -1,0 +1,133 @@
+.heroNotice {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: var(--s-4, 16px);
+  font-size: var(--t-small, 13px);
+  font-weight: 500;
+  color: var(--p-ink, #17281d);
+  flex-wrap: wrap;
+}
+
+.noticeBadge {
+  background: var(--p-accent, #1f5134);
+  color: var(--p-accent-ink, #f6f5ec);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.heroProof {
+  font-size: var(--t-small, 14px);
+  color: var(--p-ink, #17281d);
+  margin-top: var(--s-5, 24px);
+}
+
+.feedActions {
+  margin-top: var(--s-5, 24px);
+}
+
+.contentSection {
+  height: auto !important;
+  min-height: auto !important;
+  padding: clamp(64px, 8vh, 96px) 0 !important;
+  display: block !important;
+  position: relative !important;
+}
+
+.circleList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.circleItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-line, rgba(23, 40, 29, 0.12));
+  border-radius: var(--radius-sm, 4px);
+  text-decoration: none;
+  color: var(--p-ink, #17281d);
+  transition: border-color 140ms ease;
+}
+
+.circleItem:hover {
+  border-color: var(--p-action, #1f5134);
+}
+
+.circleMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.circleName {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--p-ink, #17281d);
+}
+
+.circleBadge {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--p-accent, #1f5134);
+  background: var(--color-mint, #e9efe8);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.calendarDesk {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calendarHead {
+  font-family: var(--font-display, var(--font-text));
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--p-ink, #17281d);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-line, rgba(23, 40, 29, 0.12));
+}
+
+.calendarTable {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.calendarRow {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-line-subtle, rgba(23, 40, 29, 0.06));
+  font-size: 13px;
+}
+
+.calDistrict {
+  font-weight: 600;
+  color: var(--p-ink, #17281d);
+}
+
+.calCrop {
+  color: var(--p-ink, #17281d);
+}
+
+.calStatus {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--p-accent, #1f5134);
+  background: var(--color-mint, #e9efe8);
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-align: right;
+}

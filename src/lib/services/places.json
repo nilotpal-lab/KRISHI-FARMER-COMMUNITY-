@@ -1,0 +1,329 @@
+{
+  "version": 1,
+  "states": [
+    {
+      "key": "andhra-pradesh",
+      "kind": "state",
+      "labels": {
+        "en": "Andhra Pradesh",
+        "kn": "ಆಂಧ್ರ ಪ್ರದೇಶ",
+        "hi": "आंध्र प्रदेश"
+      }
+    },
+    {
+      "key": "arunachal-pradesh",
+      "kind": "state",
+      "labels": {
+        "en": "Arunachal Pradesh",
+        "kn": "ಅರುಣಾಚಲ ಪ್ರದೇಶ",
+        "hi": "अरुणाचल प्रदेश"
+      }
+    },
+    {
+      "key": "assam",
+      "kind": "state",
+      "labels": {
+        "en": "Assam",
+        "kn": "ಅಸ್ಸಾಂ",
+        "hi": "असम"
+      }
+    },
+    {
+      "key": "bihar",
+      "kind": "state",
+      "labels": {
+        "en": "Bihar",
+        "kn": "ಬಿಹಾರ",
+        "hi": "बिहार"
+      }
+    },
+    {
+      "key": "chhattisgarh",
+      "kind": "state",
+      "labels": {
+        "en": "Chhattisgarh",
+        "kn": "ಛತ್ತೀಸ್‌ಗಢ",
+        "hi": "छत्तीसगढ़"
+      }
+    },
+    {
+      "key": "goa",
+      "kind": "state",
+      "labels": {
+        "en": "Goa",
+        "kn": "ಗೋವಾ",
+        "hi": "गोवा"
+      }
+    },
+    {
+      "key": "gujarat",
+      "kind": "state",
+      "labels": {
+        "en": "Gujarat",
+        "kn": "ಗುಜರಾತ್",
+        "hi": "गुजरात"
+      }
+    },
+    {
+      "key": "haryana",
+      "kind": "state",
+      "labels": {
+        "en": "Haryana",
+        "kn": "ಹರಿಯಾಣ",
+        "hi": "हरियाणा"
+      }
+    },
+    {
+      "key": "himachal-pradesh",
+      "kind": "state",
+      "labels": {
+        "en": "Himachal Pradesh",
+        "kn": "ಹಿಮಾಚಲ ಪ್ರದೇಶ",
+        "hi": "हिमाचल प्रदेश"
+      }
+    },
+    {
+      "key": "jharkhand",
+      "kind": "state",
+      "labels": {
+        "en": "Jharkhand",
+        "kn": "ಜಾರ್ಖಂಡ್",
+        "hi": "झारखंड"
+      }
+    },
+    {
+      "key": "karnataka",
+      "kind": "state",
+      "labels": {
+        "en": "Karnataka",
+        "kn": "ಕರ್ನಾಟಕ",
+        "hi": "कर्नाटक"
+      }
+    },
+    {
+      "key": "kerala",
+      "kind": "state",
+      "labels": {
+        "en": "Kerala",
+        "kn": "ಕೇರಳ",
+        "hi": "केरल"
+      }
+    },
+    {
+      "key": "madhya-pradesh",
+      "kind": "state",
+      "labels": {
+        "en": "Madhya Pradesh",
+        "kn": "ಮಧ್ಯ ಪ್ರದೇಶ",
+        "hi": "मध्य प्रदेश"
+      }
+    },
+    {
+      "key": "maharashtra",
+      "kind": "state",
+      "labels": {
+        "en": "Maharashtra",
+        "kn": "ಮಹಾರಾಷ್ಟ್ರ",
+        "hi": "महाराष्ट्र"
+      }
+    },
+    {
+      "key": "manipur",
+      "kind": "state",
+      "labels": {
+        "en": "Manipur",
+        "kn": "ಮಣಿಪುರ",
+        "hi": "मणिपुर"
+      }
+    },
+    {
+      "key": "meghalaya",
+      "kind": "state",
+      "labels": {
+        "en": "Meghalaya",
+        "kn": "ಮೇಘಾಲಯ",
+        "hi": "मेघालय"
+      }
+    },
+    {
+      "key": "mizoram",
+      "kind": "state",
+      "labels": {
+        "en": "Mizoram",
+        "kn": "ಮಿಜೋರಾಂ",
+        "hi": "मिज़ोरम"
+      }
+    },
+    {
+      "key": "nagaland",
+      "kind": "state",
+      "labels": {
+        "en": "Nagaland",
+        "kn": "ನಾಗಾಲ್ಯಾಂಡ್",
+        "hi": "नागालैंड"
+      }
+    },
+    {
+      "key": "odisha",
+      "kind": "state",
+      "labels": {
+        "en": "Odisha",
+        "kn": "ಒಡಿಶಾ",
+        "hi": "ओडिशा"
+      }
+    },
+    {
+      "key": "punjab",
+      "kind": "state",
+      "labels": {
+        "en": "Punjab",
+        "kn": "ಪಂಜಾಬ್",
+        "hi": "पंजाब"
+      }
+    },
+    {
+      "key": "rajasthan",
+      "kind": "state",
+      "labels": {
+        "en": "Rajasthan",
+        "kn": "ರಾಜಸ್ಥಾನ",
+        "hi": "राजस्थान"
+      }
+    },
+    {
+      "key": "sikkim",
+      "kind": "state",
+      "labels": {
+        "en": "Sikkim",
+        "kn": "ಸಿಕ್ಕಿಂ",
+        "hi": "सिक्किम"
+      }
+    },
+    {
+      "key": "tamil-nadu",
+      "kind": "state",
+      "labels": {
+        "en": "Tamil Nadu",
+        "kn": "ತಮಿಳುನಾಡು",
+        "hi": "तमिलनाडु"
+      }
+    },
+    {
+      "key": "telangana",
+      "kind": "state",
+      "labels": {
+        "en": "Telangana",
+        "kn": "ತೆಲಂಗಾಣ",
+        "hi": "तेलंगाना"
+      }
+    },
+    {
+      "key": "tripura",
+      "kind": "state",
+      "labels": {
+        "en": "Tripura",
+        "kn": "ತ್ರಿಪುರಾ",
+        "hi": "त्रिपुरा"
+      }
+    },
+    {
+      "key": "uttar-pradesh",
+      "kind": "state",
+      "labels": {
+        "en": "Uttar Pradesh",
+        "kn": "ಉತ್ತರ ಪ್ರದೇಶ",
+        "hi": "उत्तर प्रदेश"
+      }
+    },
+    {
+      "key": "uttarakhand",
+      "kind": "state",
+      "labels": {
+        "en": "Uttarakhand",
+        "kn": "ಉತ್ತರಾಖಂಡ",
+        "hi": "उत्तराखंड"
+      }
+    },
+    {
+      "key": "west-bengal",
+      "kind": "state",
+      "labels": {
+        "en": "West Bengal",
+        "kn": "ಪಶ್ಚಿಮ ಬಂಗಾಳ",
+        "hi": "पश्चिम बंगाल"
+      }
+    },
+    {
+      "key": "andaman-nicobar-islands",
+      "kind": "ut",
+      "labels": {
+        "en": "Andaman and Nicobar Islands",
+        "kn": "ಅಂಡಮಾನ್ ಮತ್ತು ನಿಕೋಬಾರ್ ದ್ವೀಪಗಳು",
+        "hi": "अंडमान और निकोबार द्वीप समूह"
+      }
+    },
+    {
+      "key": "chandigarh",
+      "kind": "ut",
+      "labels": {
+        "en": "Chandigarh",
+        "kn": "ಚಂಡೀಗಢ",
+        "hi": "चंडीगढ़"
+      }
+    },
+    {
+      "key": "dadra-nagar-haveli-daman-diu",
+      "kind": "ut",
+      "labels": {
+        "en": "Dadra and Nagar Haveli and Daman and Diu",
+        "kn": "ದಾದ್ರಾ ಮತ್ತು ನಗರ ಹವೇಲಿ ಹಾಗೂ ದಮನ್ ಮತ್ತು ದಿಯು",
+        "hi": "दादरा और नगर हवेली और दमन और दीव"
+      }
+    },
+    {
+      "key": "delhi",
+      "kind": "ut",
+      "labels": {
+        "en": "Delhi",
+        "kn": "ದೆಹಲಿ",
+        "hi": "दिल्ली"
+      }
+    },
+    {
+      "key": "jammu-and-kashmir",
+      "kind": "ut",
+      "labels": {
+        "en": "Jammu and Kashmir",
+        "kn": "ಜಮ್ಮು ಮತ್ತು ಕಾಶ್ಮೀರ",
+        "hi": "जम्मू और कश्मीर"
+      }
+    },
+    {
+      "key": "ladakh",
+      "kind": "ut",
+      "labels": {
+        "en": "Ladakh",
+        "kn": "ಲಡಾಖ್",
+        "hi": "लद्दाख"
+      }
+    },
+    {
+      "key": "lakshadweep",
+      "kind": "ut",
+      "labels": {
+        "en": "Lakshadweep",
+        "kn": "ಲಕ್ಷದ್ವೀಪ",
+        "hi": "लक्षद्वीप"
+      }
+    },
+    {
+      "key": "puducherry",
+      "kind": "ut",
+      "labels": {
+        "en": "Puducherry",
+        "kn": "ಪುದುಚೇರಿ",
+        "hi": "पुदुचेरी"
+      }
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+# KRISHI — Autonomous Execution Progress Log
+
+## Phase 1A — First-visit Language Picker (/welcome)
+- CHANGED:
+  - `src/middleware.ts` (first-visit redirect to /welcome when locale missing)
+  - `src/app/welcome/page.tsx` (trilingual mascot welcome screen, 3 large cards, speech synthesis audio)
+  - `src/app/welcome/Welcome.module.css` (mobile-native responsive styling, 48px tap targets)
+  - `src/lib/i18n/dictionaries.ts` (added 10 welcome keys across en, kn, hi)
+- VERIFIED (with evidence):
+  - `npm run build`: Compiled with 0 errors, generated `/welcome` static page.
+  - `node scripts/verify-all.js`: All 5 tests passed, 296 keys in EN/KN/HI with 100% parity, 0 leaks.
+  - `node scripts/test-locales.js`: Passed.
+  - Browser subagent at 375px: First visit redirect confirmed, cards rendered with distinct tints, Kannada selection tested and confirmed navigating to `/login`.
+- NOT VERIFIED:
+  - Physical speaker hardware audio output on real phone.
+- BROKEN / RISKS:
+  - None.
+- NEXT:
+  - Phase 1B
+
+## Phase 1B — Auth + Signup Wizard (/login & /signup)
+- CHANGED:
+  - `src/types/index.ts` (extended UserProfile with passwordHash, age, experienceYears, state, district, readLangs, writeLangs, crops, photoDataUrl)
+  - `src/lib/services/krishiService.ts` (added SHA-256 password hashing via SubtleCrypto, account registration in localStorage, persistent login, error handling)
+  - `src/app/login/page.tsx` (real login against stored accounts, Create account link, Continue as guest button)
+  - `src/app/signup/page.tsx` (9-step wizard with progress bar, validation, back/next/skip, native canvas image compression to 400px, auto-login)
+  - `src/app/signup/Signup.module.css` (mobile-native styling, chip selectors, progress bar, 48px tap targets)
+  - `src/app/profile/page.tsx` (extended profile display: age, experience, location, languages, crops, photo avatar)
+  - `src/lib/i18n/dictionaries.ts` (added 43 auth and wizard strings across en, kn, and hi with 100% parity)
+- VERIFIED (with evidence):
+  - `npm run build`: Compiled in 4.3s, 13/13 pages static, 0 errors.
+  - `node scripts/verify-all.js`: All 5 tests passed, 350 keys each in EN, KN, HI (100% parity, 0 leaks).
+  - `node scripts/test-locales.js`: Passed across all 18 posts and communities.
+  - Browser subagent at 375px in Kannada:
+    - Login: empty submit validation failure observed ("ಬಳಕೆದಾರರ ಹೆಸರು ಮತ್ತು ಗುಪ್ತಪದ ಪರಿಶೀಲಿಸಿ.").
+    - Signup Step 1: empty name validation failure observed ("ಈ ವಿವರ ಅಗತ್ಯವಾಗಿದೆ.").
+    - Signup Step 2: duplicate username check observed ("ಈ ಬಳಕೆದಾರ ಹೆಸರು ಈಗಾಗಲೇ ಬಳಕೆಯಲ್ಲಿದೆ.").
+    - Full wizard completed with Ramesh Gowda, Karnataka, Mandya, Tomato & Paddy.
+    - Automatic redirection to `/` confirmed with session greeting.
+    - Profile at `/profile` confirmed rendering new fields (ಸ್ಥಳ, ವಯಸ್ಸು, ಅನುಭವ, ಬೆಳೆಗಳು).
+    - Evidence screenshots saved: `docs/evidence/phase-1b-signup.png` and `docs/evidence/phase-1b-profile.png`.
+- NOT VERIFIED:
+  - Real camera hardware capture on physical phone.
+- BROKEN / RISKS:
+  - Demo password hashing uses SubtleCrypto SHA-256 client-side; production auth replaces it later.
+- NEXT:
+  - Phase 1C
+
+## Phase 1C — Stress Test (/welcome, /login, /signup)
+- CHANGED:
+  - `src/app/welcome/Welcome.module.css` (defensive text wrapping: `overflow-wrap: break-word`, `word-break: break-word`)
+  - `src/app/login/Login.module.css` (defensive error banner and notice wrapping)
+  - `src/app/signup/Signup.module.css` (defensive title/help/chip wrapping and `flex-wrap: wrap` on wizard action buttons)
+- VERIFIED (with evidence):
+  - `npm run build`: Compiled cleanly in 2.3s, 13/13 static pages, 0 errors.
+  - `node scripts/verify-all.js`: All 5 tests passed, 350 keys each in EN, KN, HI (100% parity, 0 leaks).
+  - `node scripts/test-locales.js`: Passed across all 18 posts and communities.
+  - Browser subagent at 375px mobile viewport in Kannada:
+    - `/welcome`: Verified zero horizontal scroll, clean wrap on Kannada titles and 3 language cards.
+    - `/login`: Verified wrapped error banner and demo help box without overflow.
+    - `/signup`: Tested 38-character Kannada name ('ಬಸವನಗೌಡ ದೊಡ್ಡಣ್ಣನವರ ಚೆನ್ನಬಸಪ್ಪಗೌಡ'), verified zero layout distortion; verified step 6 dropdowns and step 9 crop chips 2-column mobile layout.
+    - Screenshot saved: `docs/evidence/phase-1c-breakui.png`.
+- NOT VERIFIED:
+  - Browser rendering on physical non-Chromium budget mobile browsers (tested in mobile Chromium at 375px).
+- BROKEN / RISKS:
+  - None.
+- NEXT:
+  - Phase 2
+
+
+## Phase 2 — Image and Audio Posts & Comments
+- CHANGED:
+  - `src/lib/utils/mediaUtils.ts` (canvas photo compressor: max 900px wide, JPEG 0.7, file-to-data-URL utility)
+  - `src/components/common/AudioRecorder.tsx` & `AudioRecorder.module.css` (HTML5 MediaRecorder with timer, preview audio player, permission denial handling, 48px touch targets)
+  - `src/types/index.ts` (extended Post and Comment types with optional `audioUrl?: string`)
+  - `src/lib/services/krishiService.ts` (integrated `audioUrl` on post and comment creation, QuotaExceededError defensive try/catch)
+  - `src/app/posts/new/page.tsx` & `src/components/common/InlineComposer.tsx` (real image file input + 60s AudioRecorder)
+  - `src/components/common/PostCard.tsx` & `src/app/posts/[id]/page.tsx` (rendered image and HTML5 `<audio controls>`, added 30s voice comment recorder to detail page)
+  - `src/lib/i18n/dictionaries.ts` (added media, quota, comment validation, and auto-translate keys with 100% parity across en, kn, hi: 368 total keys each)
+- VERIFIED (with evidence):
+  - `npm run build`: Compiled in 3.4s, 13/13 static pages, 0 errors.
+  - `node scripts/verify-all.js`: All 5 tests passed, 368 keys each in EN, KN, HI (100% parity, 0 leaks).
+  - `node scripts/test-locales.js`: Passed across all 18 posts, 6 comments, and communities.
+  - Browser subagent at 375px mobile viewport in Kannada:
+    - `/posts/new`: Validation failure triggered when submitting empty fields ("ಸಂಕ್ಷಿಪ್ತ ಮತ್ತು ಸ್ಪಷ್ಟವಾಗಿರಲಿ (೫ ರಿಂದ ೧೦೦ ಅಕ್ಷರಗಳು)").
+    - Audio recorder tested: recorded audio snippet, attached with preview and remove option.
+    - Post created with title and description in Kannada, redirected to `/posts/post_1795248502823`.
+    - `/posts/[id]`: Verified HTML5 audio player controls, image rendering, and voice comment recorder UI.
+    - Comment validation failure: tested empty submit, verified translated error message.
+    - Comment submitted in Kannada, verified immediately visible under "ಚರ್ಚೆ ( 1 )".
+    - Evidence screenshot saved: `docs/evidence/phase-2-media.png`.
+- NOT VERIFIED:
+  - Real microphone hardware and audio recording encoding on physical smartphone hardware.
+  - Device camera photo capture on physical phone.
+- BROKEN / RISKS:
+  - Audio and image files stored as Base64 data URLs in localStorage; quota handling shows a translated error banner when storage is full.
+- NEXT:
+  - Phase 3
+
+
+## Phase 3 — Auto-translate & Acceptance Criterion 4
+- CHANGED:
+  - `src/app/api/translate/route.ts` (Next.js route handler calling Gemini 3.8 Flash with farmer-friendly system prompt, returns 503 on missing key or API failure without crashing)
+  - `src/lib/utils/useAutoTranslate.ts` (client translation hook with localStorage caching by `contentId:locale`, skeleton loader, and original language toggle)
+  - `src/components/common/TranslationBadge.tsx` & `TranslationBadge.module.css` (accessible trilingual badge: "Auto-translated from {lang} · See original" with min 44px tap target)
+  - `src/components/common/PostCard.tsx` (integrated auto-translate badge and interactive toggle on post cards in feeds)
+  - `src/app/posts/[id]/page.tsx` (unconditional top-level hook call fixing React hook ordering, post title/body auto-translation, `CommentItemRow` comment translation)
+  - `src/lib/services/mockData.ts` (preserved original post and comment language `lang: (p.lang || 'en')` from fixtures)
+  - `src/lib/services/krishiService.ts` (bumped storage keys to v5 for clean cache, added flexible post ID matching for `/posts/p_p03` and `/posts/post-3`)
+  - `docs/evidence/phase-3-translate.png` (evidence screenshot of Hindi post viewed by Kannada user with auto-translate badge and working toggle)
+- VERIFIED (with evidence):
+  - `npm run build`: Compiled in 2.6s, 14/14 static and dynamic pages, 0 errors.
+  - `node scripts/verify-all.js`: All 5 tests passed, 368 keys each in EN, KN, HI (100% parity, 0 leaks).
+  - `node scripts/test-locales.js`: Passed across all 18 posts, 6 comments, and communities.
+  - Live `/api/translate` tested:
+    - Status 200 with Kannada translation for "टमाटर की फसल में रोग" -> "ಟೊಮೆಟೊ ಬೆಳೆಯಲ್ಲಿ ರೋಗ".
+    - Status 400 for empty text (`{ text: "" }`).
+  - Acceptance Criterion 4 verified by browser subagent at 375px mobile viewport in Kannada:
+    - Opened Hindi post `p_p03` (from Maharashtra): displays "🌐 ಹಿಂದಿ ನಿಂದ ಸ್ವಯಂ ಅನುವಾದಿಸಲಾಗಿದೆ • ಮೂಲ ಪಠ್ಯ ನೋಡಿ".
+    - Post detail page loads cleanly with zero errors.
+    - Title renders in Kannada: "ಹನಿ ನೀರಾವರಿ ಹರಿವಿನ ಪ್ರಮಾಣ ದಾಖಲಿಸುವುದು ಹೇಗೆ?".
+    - Tapped "ಮೂಲ ಪಠ್ಯ ನೋಡಿ": toggles to original Hindi: "ड्रिप सिंचाई में पानी का दबाव कैसे बनाए रखें?", and button updates to "ಅನುವಾದ ನೋಡಿ".
+    - Tapped "ಅನುವಾದ ನೋಡಿ": toggles back to Kannada.
+    - Verified badge and toggle also working on discussion comments.
+    - Evidence screenshot saved to `docs/evidence/phase-3-translate.png`.
+- NOT VERIFIED:
+  - Behavior when Gemini API experiences third-party rate limits under heavy production concurrent load (offline fallback verified).
+- BROKEN / RISKS:
+  - None. When offline or without key, UI displays original post text without crashing.
+- NEXT:
+  - STOP for phone review (Phase 4A is next after user confirmation).

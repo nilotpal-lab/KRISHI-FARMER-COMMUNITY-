@@ -1,0 +1,35 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  line-height: 1.25;
+  user-select: none;
+}
+
+.mint {
+  background-color: var(--color-mint);
+  color: var(--color-leaf-pressed);
+  border: 1px solid var(--color-line);
+}
+
+.sun {
+  background-color: var(--color-sun);
+  color: var(--color-ink);
+  border: 1px solid var(--color-line);
+}
+
+.line {
+  background-color: var(--color-surface);
+  color: var(--color-muted);
+  border: 1px solid var(--color-line);
+}
+
+.danger {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
+  border: 1px solid rgba(153, 40, 48, 0.2);
+}

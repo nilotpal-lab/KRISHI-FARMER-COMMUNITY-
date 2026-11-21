@@ -1,0 +1,699 @@
+{
+  "version": 1,
+  "accounts": [
+    {
+      "username": "gowri_demo",
+      "displayName": "Gowri",
+      "displayNames": {
+        "en": "Gowri",
+        "kn": "ಗೌರಿ",
+        "hi": "गौरी"
+      },
+      "role": "member"
+    },
+    {
+      "username": "ravi_demo",
+      "displayName": "Ravi",
+      "displayNames": {
+        "en": "Ravi",
+        "kn": "ರವಿ",
+        "hi": "रवि"
+      },
+      "role": "member"
+    },
+    {
+      "username": "admin_demo",
+      "displayName": "Krishi Demo Moderator",
+      "displayNames": {
+        "en": "Krishi Demo Moderator",
+        "kn": "ಕೃಷಿ ಡೆಮೊ ಮಾಡರೇಟರ್",
+        "hi": "कृषि डेमो मॉडरेटर"
+      },
+      "role": "admin"
+    }
+  ],
+  "communities": [
+    {
+      "slug": "karnataka-farmers",
+      "kind": "location",
+      "stateKey": "karnataka",
+      "seedOrder": 1,
+      "labels": {
+        "en": {
+          "name": "Karnataka Farmers",
+          "description": "Share observations and useful questions from across Karnataka."
+        },
+        "kn": {
+          "name": "ಕರ್ನಾಟಕದ ರೈತರು",
+          "description": "ಕರ್ನಾಟಕದ ವಿವಿಧ ಭಾಗಗಳ ಕೃಷಿ ಅನುಭವ ಮತ್ತು ಪ್ರಶ್ನೆಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ."
+        },
+        "hi": {
+          "name": "कर्नाटक के किसान",
+          "description": "कर्नाटक के अलग-अलग इलाक़ों के अनुभव और सवाल साझा करें।"
+        }
+      }
+    },
+    {
+      "slug": "maharashtra-farmers",
+      "kind": "location",
+      "stateKey": "maharashtra",
+      "seedOrder": 2,
+      "labels": {
+        "en": {
+          "name": "Maharashtra Farmers",
+          "description": "Discuss farming observations and local updates from Maharashtra."
+        },
+        "kn": {
+          "name": "ಮಹಾರಾಷ್ಟ್ರದ ರೈತರು",
+          "description": "ಮಹಾರಾಷ್ಟ್ರದ ಕೃಷಿ ಅನುಭವ ಮತ್ತು ಸ್ಥಳೀಯ ಸಂಗತಿಗಳನ್ನು ಚರ್ಚಿಸಿ."
+        },
+        "hi": {
+          "name": "महाराष्ट्र के किसान",
+          "description": "महाराष्ट्र की खेती और स्थानीय जानकारी पर बात करें।"
+        }
+      }
+    },
+    {
+      "slug": "tamil-nadu-farmers",
+      "kind": "location",
+      "stateKey": "tamil-nadu",
+      "seedOrder": 3,
+      "labels": {
+        "en": {
+          "name": "Tamil Nadu Farmers",
+          "description": "A public space to share questions and observations from Tamil Nadu."
+        },
+        "kn": {
+          "name": "ತಮಿಳುನಾಡಿನ ರೈತರು",
+          "description": "ತಮಿಳುನಾಡಿನ ಕೃಷಿ ಪ್ರಶ್ನೆ ಮತ್ತು ಅನುಭವ ಹಂಚಿಕೊಳ್ಳುವ ತೆರೆದ ಗುಂಪು."
+        },
+        "hi": {
+          "name": "तमिलनाडु के किसान",
+          "description": "तमिलनाडु की खेती के सवाल और अनुभव साझा करने का समूह।"
+        }
+      }
+    },
+    {
+      "slug": "tomato-growers",
+      "kind": "topic",
+      "stateKey": null,
+      "seedOrder": 4,
+      "labels": {
+        "en": {
+          "name": "Tomato Growers",
+          "description": "Ask about tomato plants and share what you observe."
+        },
+        "kn": {
+          "name": "ಟೊಮ್ಯಾಟೊ ಬೆಳೆಗಾರರು",
+          "description": "ಟೊಮ್ಯಾಟೊ ಗಿಡಗಳ ಬಗ್ಗೆ ಪ್ರಶ್ನಿಸಿ ಮತ್ತು ಕಂಡದ್ದನ್ನು ಹಂಚಿಕೊಳ್ಳಿ."
+        },
+        "hi": {
+          "name": "टमाटर उगाने वाले किसान",
+          "description": "टमाटर के पौधों के सवाल और अनुभव साझा करें।"
+        }
+      }
+    },
+    {
+      "slug": "onion-growers",
+      "kind": "topic",
+      "stateKey": null,
+      "seedOrder": 5,
+      "labels": {
+        "en": {
+          "name": "Onion Growers",
+          "description": "A group for questions and notes about growing onions."
+        },
+        "kn": {
+          "name": "ಈರುಳ್ಳಿ ಬೆಳೆಗಾರರು",
+          "description": "ಈರುಳ್ಳಿ ಬೆಳೆಯುವ ಬಗ್ಗೆ ಪ್ರಶ್ನೆ ಮತ್ತು ಟಿಪ್ಪಣಿಗಳ ಗುಂಪು."
+        },
+        "hi": {
+          "name": "प्याज़ उगाने वाले किसान",
+          "description": "प्याज़ की खेती के सवाल और नोट्स का समूह।"
+        }
+      }
+    },
+    {
+      "slug": "chilli-growers",
+      "kind": "topic",
+      "stateKey": null,
+      "seedOrder": 6,
+      "labels": {
+        "en": {
+          "name": "Chilli Growers",
+          "description": "Compare observations and discuss growing chilli."
+        },
+        "kn": {
+          "name": "ಮೆಣಸಿನಕಾಯಿ ಬೆಳೆಗಾರರು",
+          "description": "ಮೆಣಸಿನಕಾಯಿ ಬೆಳೆಯ ಅನುಭವಗಳನ್ನು ಹೋಲಿಸಿ ಚರ್ಚಿಸಿ."
+        },
+        "hi": {
+          "name": "मिर्च उगाने वाले किसान",
+          "description": "मिर्च की खेती के अनुभवों की तुलना करें और चर्चा करें।"
+        }
+      }
+    }
+  ],
+  "posts": [
+    {
+      "key": "p01",
+      "community": "karnataka-farmers",
+      "author": "gowri_demo",
+      "lang": "en",
+      "title": "Field soil testing checklist for cotton",
+      "body": "Preparing soil samples across five acre blocks for pre-monsoon testing. What depth and core patterns do you recommend for black cotton soil?",
+      "offsetMinutes": -60,
+      "labels": {
+        "en": {
+          "title": "Field soil testing checklist for cotton",
+          "body": "Preparing soil samples across five acre blocks for pre-monsoon testing. What depth and core patterns do you recommend for black cotton soil?"
+        },
+        "kn": {
+          "title": "ಹತ್ತಿ ಬೆಳೆಗೆ ಮಣ್ಣು ಪರೀಕ್ಷೆಯ ಮಾರ್ಗಸೂಚಿ",
+          "body": "ಮುಂಗಾರು ಪೂರ್ವ ಪರೀಕ್ಷೆಗಾಗಿ ಐದು ಎಕರೆ ಜಮೀನಿನಲ್ಲಿ ಮಣ್ಣಿನ ಮಾದರಿಗಳನ್ನು ಸಿದ್ಧಪಡಿಸುತ್ತಿದ್ದೇನೆ. ಕಪ್ಪು ಹತ್ತಿ ಮಣ್ಣಿಗೆ ಯಾವ ಆಳ ಮತ್ತು ಮಾದರಿ ವಿಧಾನ ಸೂಕ್ತ?"
+        },
+        "hi": {
+          "title": "कपास की फसल के लिए मिट्टी परीक्षण चेकलिस्ट",
+          "body": "मानसून पूर्व परीक्षण के लिए पांच एकड़ खेत से मिट्टी के नमूने तैयार कर रहा हूँ। काली कपासी मिट्टी के लिए कौन सी गहराई और पैटर्न सबसे उपयुक्त है?"
+        }
+      }
+    },
+    {
+      "key": "p02",
+      "community": "tomato-growers",
+      "author": "ravi_demo",
+      "lang": "kn",
+      "title": "ಟೊಮ್ಯಾಟೊ ಎಲೆಗಳ ಬಗ್ಗೆ ಪ್ರಶ್ನೆ",
+      "body": "ಕೆಲವು ಕೆಳಗಿನ ಎಲೆಗಳಲ್ಲಿ ಚುಕ್ಕೆ ಕಂಡಿದೆ. ಗಿಡದ ಹಂತದ ಜೊತೆಗೆ ಇನ್ನೇನು ಬರೆಯಬೇಕು ಅಂತ ತಿಳಿಸಿ.",
+      "offsetMinutes": -150,
+      "labels": {
+        "en": {
+          "title": "Question about spots on tomato leaves",
+          "body": "Noticed circular brown spots on lower leaves after damp weather. Please advise what plant growth stage and foliar symptoms I should record."
+        },
+        "kn": {
+          "title": "ಟೊಮ್ಯಾಟೊ ಎಲೆಗಳ ಬಗ್ಗೆ ಪ್ರಶ್ನೆ",
+          "body": "ಕೆಲವು ಕೆಳಗಿನ ಎಲೆಗಳಲ್ಲಿ ಚುಕ್ಕೆ ಕಂಡಿದೆ. ಗಿಡದ ಹಂತದ ಜೊತೆಗೆ ಇನ್ನೇನು ಬರೆಯಬೇಕು ಅಂತ ತಿಳಿಸಿ."
+        },
+        "hi": {
+          "title": "टमाटर के पत्तों के बारे में सवाल",
+          "body": "निचले पत्तों पर कुछ धब्बे दिखाई दिए हैं। पौधे की अवस्था के अलावा नोट में और क्या लिखना चाहिए?"
+        }
+      }
+    },
+    {
+      "key": "p03",
+      "community": "maharashtra-farmers",
+      "author": "gowri_demo",
+      "lang": "hi",
+      "title": "टपक लाइन का बहाव कैसे लिखें",
+      "body": "मैंने लाइन के शुरू और अंत की स्थिति अलग-अलग लिखी। आपके नोट में कौन से कॉलम रहते हैं?",
+      "offsetMinutes": -240,
+      "labels": {
+        "en": {
+          "title": "Recording drip irrigation discharge rates",
+          "body": "I recorded flow rates at the start and tail end of the drip line separately. What columns do you maintain in your daily farm log?"
+        },
+        "kn": {
+          "title": "ಹನಿ ನೀರಾವರಿ ಹರಿವಿನ ಪ್ರಮಾಣ ದಾಖಲಿಸುವುದು ಹೇಗೆ?",
+          "body": "ಹನಿ ನೀರಾವರಿ ಪೈಪಿನ ಆರಂಭ ಮತ್ತು ಕೊನೆಯ ಹಂತದ ಹರಿವನ್ನು ದಾಖಲಿಸಿದ್ದೇನೆ. ನಿಮ್ಮ ದಿನಚರಿ ಪುಸ್ತಕದಲ್ಲಿ ಯಾವ ಕಾಲಮ್‌ಗಳನ್ನು ಬರೆಯುತ್ತೀರಿ?"
+        },
+        "hi": {
+          "title": "टपक लाइन का बहाव कैसे लिखें",
+          "body": "मैंने लाइन के शुरू और अंत की स्थिति अलग-अलग लिखी। आपके नोट में कौन से कॉलम रहते हैं?"
+        }
+      }
+    },
+    {
+      "key": "p04",
+      "community": "karnataka-farmers",
+      "author": "ravi_demo",
+      "lang": "en",
+      "title": "Organic neem foliar spray advisory",
+      "body": "Field advisory for chilli and tomato growers: Spray neem formulation at early dusk to manage whitefly and mite populations during flowering.",
+      "offsetMinutes": -330,
+      "labels": {
+        "en": {
+          "title": "Organic neem foliar spray advisory",
+          "body": "Field advisory for chilli and tomato growers: Spray neem formulation at early dusk to manage whitefly and mite populations during flowering."
+        },
+        "kn": {
+          "title": "ಸಾವಯವ ಬೇವಿನ ಕಷಾಯ ಸಿಂಪಡಣೆ ಸಲಹೆ",
+          "body": "ಮೆಣಸಿನಕಾಯಿ ಮತ್ತು ಟೊಮ್ಯಾಟೊ ಬೆಳೆಗಾರರಿಗೆ ಸಲಹೆ: ಹೂವಾಡುವ ಹಂತದಲ್ಲಿ ಬಿಳಿ ನೊಣ ಮತ್ತು ನುಸಿ ನಿಯಂತ್ರಿಸಲು ಸಂಜೆಯ ವೇಳೆ ಬೇವಿನ ಕಷಾಯ ಸಿಂಪಡಿಸಿ."
+        },
+        "hi": {
+          "title": "जैविक नीम फोलियर स्प्रे सलाह",
+          "body": "मिर्च और टमाटर उत्पादकों के लिए सलाह: फूल आने के दौरान सफेद मक्खी और माइट्स की रोकथाम के लिए शाम को नीम के घोल का छिड़काव करें।"
+        }
+      }
+    },
+    {
+      "key": "p05",
+      "community": "onion-growers",
+      "author": "gowri_demo",
+      "lang": "kn",
+      "title": "ಈರುಳ್ಳಿ ಬೆಳೆ ದಾಖಲೆಗೆ ಏನು ಬೇಕು?",
+      "body": "ಈರುಳ್ಳಿ ಕಡೆಯನ್ನು ಬೇರೆ ಬೇರೆ ಗುರುತಿನಿಂದ ಬರೆಯುತ್ತಿದ್ದೇನೆ. ಬಿತ್ತಿದ ದಿನದ ಜೊತೆಗೆ ಏನು ಸೇರಿಸಬಹುದು?",
+      "offsetMinutes": -420,
+      "labels": {
+        "en": {
+          "title": "What details are needed for onion crop nursery logs?",
+          "body": "I am documenting onion nursery beds under separate identifiers. What observations should I include alongside the sowing date?"
+        },
+        "kn": {
+          "title": "ಈರುಳ್ಳಿ ಬೆಳೆ ದಾಖಲೆಗೆ ಏನು ಬೇಕು?",
+          "body": "ಈರುಳ್ಳಿ ಕಡೆಯನ್ನು ಬೇರೆ ಬೇರೆ ಗುರುತಿನಿಂದ ಬರೆಯುತ್ತಿದ್ದೇನೆ. ಬಿತ್ತಿದ ದಿನದ ಜೊತೆಗೆ ಏನು ಸೇರಿಸಬಹುದು?"
+        },
+        "hi": {
+          "title": "प्याज़ की पौधशाला के रिकॉर्ड में क्या रखें?",
+          "body": "मैं अलग-अलग क्यारियों का रिकॉर्ड रख रहा हूँ। बुवाई की तारीख के साथ क्यारी में और क्या विवरण शामिल करना चाहिए?"
+        }
+      }
+    },
+    {
+      "key": "p06",
+      "community": "onion-growers",
+      "author": "ravi_demo",
+      "lang": "hi",
+      "title": "प्याज़ की क्यारी का रिकॉर्ड",
+      "body": "क्या आप अलग क्यारियों को अपने नोट में छोटे नाम देते हैं? नाम लिखने का आसान तरीका बताइए।",
+      "offsetMinutes": -510,
+      "labels": {
+        "en": {
+          "title": "Maintaining records for onion nursery beds",
+          "body": "Do you assign short bed codes in your field notebook? Please share an easy naming method for multi-plot nursery rotation."
+        },
+        "kn": {
+          "title": "ಈರುಳ್ಳಿ ಪಾತಿಯ ದಾಖಲೆ ಸುಲಭವಾಗಿ ಇಡುವುದು ಹೇಗೆ?",
+          "body": "ನಿಮ್ಮ ಕೃಷಿ ಟಿಪ್ಪಣಿಯಲ್ಲಿ ವಿವಿಧ ಪಾತಿಗಳಿಗೆ ಸಣ್ಣ ಸಂಕೇತಗಳನ್ನು ನೀಡುತ್ತೀರಾ? ಹೆಸರುಗಳನ್ನು ಬರೆಯುವ ಸರಳ ವಿಧಾನ ತಿಳಿಸಿ."
+        },
+        "hi": {
+          "title": "प्याज़ की क्यारी का रिकॉर्ड",
+          "body": "क्या आप अलग क्यारियों को अपने नोट में छोटे नाम देते हैं? नाम लिखने का आसान तरीका बताइए।"
+        }
+      }
+    },
+    {
+      "key": "p07",
+      "community": "tamil-nadu-farmers",
+      "author": "gowri_demo",
+      "lang": "en",
+      "title": "Recording rainfall observations in red soil",
+      "body": "Maintaining daily rain gauge measurements across rainfed groundnut plots. How do you track soil saturation after continuous light showers?",
+      "offsetMinutes": -600,
+      "labels": {
+        "en": {
+          "title": "Recording rainfall observations in red soil",
+          "body": "Maintaining daily rain gauge measurements across rainfed groundnut plots. How do you track soil saturation after continuous light showers?"
+        },
+        "kn": {
+          "title": "ಕೆಂಪು ಮಣ್ಣಿನಲ್ಲಿ ಮಳೆಯ ಪ್ರಮಾಣ ದಾಖಲಿಸುವುದು",
+          "body": "ಮಳೆ ಆಶ್ರಿತ ಕಡಲೆಕಾಯಿ ಹೊಲಗಳಲ್ಲಿ ದಿನನಿತ್ಯದ ಮಳೆಮಾಪಕ ಅಳತೆಗಳನ್ನು ದಾಖಲಿಸುತ್ತಿದ್ದೇನೆ. ನಿರಂತರ ಜಿಟಿಜಿಟಿ ಮಳೆಯ ನಂತರ ಮಣ್ಣಿನ ತೇವಾಂಶವನ್ನು ಹೇಗೆ ಅಳೆಯುತ್ತೀರಿ?"
+        },
+        "hi": {
+          "title": "लाल मिट्टी में वर्षा का रिकॉर्ड रखना",
+          "body": "वर्षा आधारित मूंगफली के खेतों में रोज़ाना रेन गेज का डेटा रख रहा हूँ। हल्की बारिश के बाद मिट्टी की नमी का सही अंदाज़ा कैसे लगाते हैं?"
+        }
+      }
+    },
+    {
+      "key": "p08",
+      "community": "karnataka-farmers",
+      "author": "ravi_demo",
+      "lang": "kn",
+      "title": "ಗುಂಪಿನ ಸುದ್ದಿ ಬರೆಯುವ ಮಾದರಿ",
+      "body": "ಇದು ಉದಾಹರಣೆ ಮಾತ್ರ. ಸ್ಥಳೀಯ ಸಭೆಯ ಮಾಹಿತಿ ಬರೆಯುವಾಗ ಪ್ರದೇಶ ಮತ್ತು ವಿಷಯವನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ಕೊಡಿ. ಇಲ್ಲಿ ಯಾವುದೇ ಸಭೆಯ ಘೋಷಣೆ ಇಲ್ಲ.",
+      "offsetMinutes": -690,
+      "labels": {
+        "en": {
+          "title": "Guideline for posting community advisories",
+          "body": "This is an example format. When sharing local farmer meeting details, state your location and subject clearly. No meeting announcement here."
+        },
+        "kn": {
+          "title": "ಗುಂಪಿನ ಸುದ್ದಿ ಬರೆಯುವ ಮಾದರಿ",
+          "body": "ಇದು ಉದಾಹರಣೆ ಮಾತ್ರ. ಸ್ಥಳೀಯ ಸಭೆಯ ಮಾಹಿತಿ ಬರೆಯುವಾಗ ಪ್ರದೇಶ ಮತ್ತು ವಿಷಯವನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ಕೊಡಿ. ಇಲ್ಲಿ ಯಾವುದೇ ಸಭೆಯ ಘೋಷಣೆ ಇಲ್ಲ."
+        },
+        "hi": {
+          "title": "सामुदायिक सूचनाएं लिखने का प्रारूप",
+          "body": "यह सिर्फ एक उदाहरण है। स्थानीय किसान बैठक की जानकारी साझा करते समय क्षेत्र और विषय स्पष्ट रूप से लिखें।"
+        }
+      }
+    },
+    {
+      "key": "p09",
+      "community": "chilli-growers",
+      "author": "gowri_demo",
+      "lang": "hi",
+      "title": "मिर्च के पत्तों का विवरण",
+      "body": "एक हिस्से में पत्ते अलग दिख रहे हैं। क्या पूरे पौधे और बदले हुए हिस्से का अंतर लिखना उपयोगी होगा?",
+      "offsetMinutes": -780,
+      "labels": {
+        "en": {
+          "title": "Documenting chilli foliage irregularities",
+          "body": "In one field section the leaves look abnormal. Would it be useful to note the differences between the healthy canopy and affected rows?"
+        },
+        "kn": {
+          "title": "ಮೆಣಸಿನ ಎಲೆಗಳ ಬದಲಾವಣೆಯ ವಿವರ",
+          "body": "ಒಂದು ಭಾಗದಲ್ಲಿ ಎಲೆಗಳು ಬೇರೆ ರೀತಿ ಕಾಣುತ್ತಿವೆ. ಪೂರ್ಣ ಗಿಡ ಮತ್ತು ಬದಲಾದ ಭಾಗದ ವ್ಯತ್ಯಾಸ ಬರೆಯುವುದು ಉಪಯುಕ್ತವೇ?"
+        },
+        "hi": {
+          "title": "मिर्च के पत्तों का विवरण",
+          "body": "एक हिस्से में पत्ते अलग दिख रहे हैं। क्या पूरे पौधे और बदले हुए हिस्से का अंतर लिखना उपयोगी होगा?"
+        }
+      }
+    },
+    {
+      "key": "p10",
+      "community": "chilli-growers",
+      "author": "ravi_demo",
+      "lang": "en",
+      "title": "Chilli leaf spot identification in black soil",
+      "body": "Noticing concentric circular brown spots on lower chilli leaves after recent rains. Soil drainage is moderate. Looking for field remedies.",
+      "offsetMinutes": -870,
+      "labels": {
+        "en": {
+          "title": "Chilli leaf spot identification in black soil",
+          "body": "Noticing concentric circular brown spots on lower chilli leaves after recent rains. Soil drainage is moderate. Looking for field remedies."
+        },
+        "kn": {
+          "title": "ಕಪ್ಪು ಮಣ್ಣಿನಲ್ಲಿ ಮೆಣಸಿನ ಎಲೆ ಚುಕ್ಕೆ ರೋಗ ಪತ್ತೆ",
+          "body": "ಇತ್ತೀಚಿನ ಮಳೆಯ ನಂತರ ಕೆಳಗಿನ ಮೆಣಸಿನ ಎಲೆಗಳಲ್ಲಿ ಕಂದು ಬಣ್ಣದ ವೃತ್ತಾಕಾರದ ಚುಕ್ಕೆಗಳು ಕಾಣಿಸಿಕೊಂಡಿವೆ. ಮಣ್ಣಿನ ನೀರು ಬಸಿಯುವಿಕೆ ಸಾಧಾರಣ. ಸೂಕ್ತ ಪರಿಹಾರ ತಿಳಿಸಿ."
+        },
+        "hi": {
+          "title": "काली मिट्टी में मिर्च के पत्तों पर धब्बों की पहचान",
+          "body": "हाल की बारिश के बाद मिर्च के निचले पत्तों पर भूरे गोल धब्बे दिख रहे हैं। जल निकासी मध्यम है। इसके लिए उपयुक्त जैविक उपाय बताएं।"
+        }
+      }
+    },
+    {
+      "key": "p11",
+      "community": "tomato-growers",
+      "author": "gowri_demo",
+      "lang": "kn",
+      "title": "ಚಿತ್ರದ ಜೊತೆ ಗಿಡದ ಹಂತ ಬರೆಯಿರಿ",
+      "body": "ಒಂದು ಮಾದರಿ ಚಿತ್ರ ಹಾಕುವಾಗ ಎಲೆ ಮೇಲೋ ಕೆಳಗೋ ಎಂದು ಬರೆದಿದ್ದೇನೆ. ಹೀಗಿದ್ದರೆ ಓದುವವರಿಗೆ ಸುಲಭವಾಗುತ್ತದೆ.",
+      "offsetMinutes": -960,
+      "labels": {
+        "en": {
+          "title": "Recording crop growth stage alongside diagnostic photos",
+          "body": "When attaching a sample photo, I note whether the affected leaf is from the upper shoot or lower canopy. This makes diagnosis much easier."
+        },
+        "kn": {
+          "title": "ಚಿತ್ರದ ಜೊತೆ ಗಿಡದ ಹಂತ ಬರೆಯಿರಿ",
+          "body": "ಒಂದು ಮಾದರಿ ಚಿತ್ರ ಹಾಕುವಾಗ ಎಲೆ ಮೇಲೋ ಕೆಳಗೋ ಎಂದು ಬರೆದಿದ್ದೇನೆ. ಹೀಗಿದ್ದರೆ ಓದುವವರಿಗೆ ಸುಲಭವಾಗುತ್ತದೆ."
+        },
+        "hi": {
+          "title": "फोटो के साथ पौधे की अवस्था लिखना",
+          "body": "मैं फोटो के साथ पौधे की अवस्था और पत्ते का हिस्सा लिखता हूँ ताकि समझने में आसानी रहे।"
+        }
+      }
+    },
+    {
+      "key": "p12",
+      "community": "tomato-growers",
+      "author": "ravi_demo",
+      "lang": "hi",
+      "title": "टमाटर की फोटो के साथ छोटा विवरण",
+      "body": "मैं फोटो के साथ पौधे की अवस्था और पत्ते का हिस्सा लिखता हूँ। फोटो का रंग बदलने वाला फ़िल्टर नहीं लगाता।",
+      "offsetMinutes": -1050,
+      "labels": {
+        "en": {
+          "title": "Capturing clear tomato canopy photos without filters",
+          "body": "I record the plant growth stage and leaf quadrant along with natural photos. Never use color-shifting filters so the diagnosis is accurate."
+        },
+        "kn": {
+          "title": "ಫಿಲ್ಟರ್ ಬಳಸದೆ ಟೊಮ್ಯಾಟೊ ಗಿಡದ ಸ್ಪಷ್ಟ ಚಿತ್ರ ತೆಗೆಯಿರಿ",
+          "body": "ನೈಸರ್ಗಿಕ ಬೆಳಕಿನಲ್ಲಿ ಹೂಬಿಡುವ ಹಂತ ಮತ್ತು ಎಲೆಯ ಭಾಗವನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ತೋರಿಸುವ ಚಿತ್ರ ಹಾಕುತ್ತೇನೆ. ಬಣ್ಣ ಬದಲಾಯಿಸುವ ಫಿಲ್ಟರ್ ಬಳಸದಿದ್ದರೆ ರೋಗ ಪತ್ತೆ ಸುಲಭ."
+        },
+        "hi": {
+          "title": "टमाटर की फोटो के साथ छोटा विवरण",
+          "body": "मैं फोटो के साथ पौधे की अवस्था और पत्ते का हिस्सा लिखता हूँ। फोटो का रंग बदलने वाला फ़िल्टर नहीं लगाता।"
+        }
+      }
+    },
+    {
+      "key": "p13",
+      "community": "maharashtra-farmers",
+      "author": "gowri_demo",
+      "lang": "en",
+      "title": "Recording crop harvest yields by acre",
+      "body": "Recording quintal yields across drip-irrigated tomato plots. Keep track of harvest crates and date of picking for seasonal comparison.",
+      "offsetMinutes": -1140,
+      "labels": {
+        "en": {
+          "title": "Recording crop harvest yields by acre",
+          "body": "Recording quintal yields across drip-irrigated tomato plots. Keep track of harvest crates and date of picking for seasonal comparison."
+        },
+        "kn": {
+          "title": "ಪ್ರತಿ ಎಕರೆಗೆ ಟೊಮ್ಯಾಟೊ ಇಳುವರಿ ದಾಖಲಿಸುವುದು",
+          "body": "ಹನಿ ನೀರಾವರಿಯ ಟೊಮ್ಯಾಟೊ ಹೊಲದಲ್ಲಿ ಕ್ವಿಂಟಾಲ್ ಇಳುವರಿ ದಾಖಲಿಸುತ್ತಿದ್ದೇನೆ. ಕಾಲೋಚಿತ ಹೋಲಿಕೆಗಾಗಿ ಕಟಾವಿನ ಕ್ರೇಟ್‌ಗಳು ಮತ್ತು ದಿನಾಂಕವನ್ನು ಬರೆದಿಡಿ."
+        },
+        "hi": {
+          "title": "प्रति एकड़ टमाटर की पैदावार का रिकॉर्ड",
+          "body": "ड्रिप सिंचाई वाले खेतों में प्रति एकड़ पैदावार दर्ज कर रहा हूँ। मौसम की तुलना के लिए तुड़ाई की तारीख और क्रेटों की संख्या संभाल कर रखें।"
+        }
+      }
+    },
+    {
+      "key": "p14",
+      "community": "chilli-growers",
+      "author": "ravi_demo",
+      "lang": "kn",
+      "title": "ಮೆಣಸಿನ ಗಿಡದ ಬದಲಾವಣೆ ದಾಖಲಿಸುವುದು",
+      "body": "ಹೊಲದ ಅಂಚಿನಲ್ಲಿ ಕೆಲವು ಗಿಡಗಳು ಬೇರೆ ರೀತಿ ಕಾಣುತ್ತಿವೆ. ಕಾರಣ ಊಹಿಸದೆ ಅದನ್ನು ಹೇಗೆ ವಿವರಿಸಲಿ?",
+      "offsetMinutes": -1230,
+      "labels": {
+        "en": {
+          "title": "Documenting borderline changes in chilli crop",
+          "body": "A few plants along the field ridge look different. How can I objectively describe the symptoms without guessing the cause prematurely?"
+        },
+        "kn": {
+          "title": "ಮೆಣಸಿನ ಗಿಡದ ಬದಲಾವಣೆ ದಾಖಲಿಸುವುದು",
+          "body": "ಹೊಲದ ಅಂಚಿನಲ್ಲಿ ಕೆಲವು ಗಿಡಗಳು ಬೇರೆ ರೀತಿ ಕಾಣುತ್ತಿವೆ. ಕಾರಣ ಊಹಿಸದೆ ಅದನ್ನು ಹೇಗೆ ವಿವರಿಸಲಿ?"
+        },
+        "hi": {
+          "title": "मिर्च के पौधों में बदलाव को दर्ज करना",
+          "body": "खेत की मेड़ के किनारे कुछ पौधों में बदलाव दिख रहा है। बिना कारण का अनुमान लगाए इसका सटीक विवरण कैसे लिखें?"
+        }
+      }
+    },
+    {
+      "key": "p15",
+      "community": "karnataka-farmers",
+      "author": "gowri_demo",
+      "lang": "hi",
+      "title": "मिट्टी के नमूने अलग कैसे पहचानें?",
+      "body": "खेत के दो अलग हिस्सों के नमूने हैं। लेबल पर नाम की जगह खेत का कोड रखना कैसा रहेगा?",
+      "offsetMinutes": -1320,
+      "labels": {
+        "en": {
+          "title": "Labeling separate soil samples across plots",
+          "body": "There are samples from two distinct field sections. How practical is it to use plot code numbers on labels instead of long names?"
+        },
+        "kn": {
+          "title": "ಬೇರೆ ಬೇರೆ ಮಣ್ಣಿನ ಮಾದರಿಗಳನ್ನು ಗುರುತಿಸುವುದು",
+          "body": "ಹೊಲದ ಎರಡು ವಿಭಿನ್ನ ಭಾಗಗಳ ಮಣ್ಣಿನ ಮಾದರಿಗಳಿವೆ. ಲೇಬಲ್ ಮೇಲೆ ಹೆಸರಿನ ಬದಲು ಜಮೀನಿನ ಕೋಡ್ ಸಂಖ್ಯೆ ಹಾಕುವುದು ಉತ್ತಮವೇ?"
+        },
+        "hi": {
+          "title": "मिट्टी के नमूने अलग कैसे पहचानें?",
+          "body": "खेत के दो अलग हिस्सों के नमूने हैं। लेबल पर नाम की जगह खेत का कोड रखना कैसा रहेगा?"
+        }
+      }
+    },
+    {
+      "key": "p16",
+      "community": "tomato-growers",
+      "author": "ravi_demo",
+      "lang": "en",
+      "title": "Tomato leaf blight diagnosis photo",
+      "body": "Observing dark brown water-soaked lesions on upper foliage after humid spell. Comparing field symptoms with early blight observations.",
+      "offsetMinutes": -1410,
+      "labels": {
+        "en": {
+          "title": "Tomato leaf blight diagnosis photo",
+          "body": "Observing dark brown water-soaked lesions on upper foliage after humid spell. Comparing field symptoms with early blight observations."
+        },
+        "kn": {
+          "title": "ಟೊಮ್ಯಾಟೊ ಎಲೆ ಕರಗು ರೋಗದ ಪತ್ತೆ",
+          "body": "ತೇವಾಂಶದ ಹವೆಯ ನಂತರ ಮೇಲಿನ ಎಲೆಗಳಲ್ಲಿ ಕಡು ಕಂದು ಬಣ್ಣದ ನೀರಿನ ಕಲೆಗಳು ಕಂಡಿವೆ. ಆರಂಭಿಕ ಬ್ಲೈಟ್ ಲಕ್ಷಣಗಳೊಂದಿಗೆ ಇದನ್ನು ಹೋಲಿಸುತ್ತಿದ್ದೇನೆ."
+        },
+        "hi": {
+          "title": "टमाटर में झुलसा रोग (ब्लाइट) की पहचान",
+          "body": "नमी वाले मौसम के बाद ऊपरी पत्तों पर गहरे भूरे पानी वाले धब्बे दिखे हैं। क्या यह अगेती झुलसा के लक्षण हैं?"
+        }
+      }
+    },
+    {
+      "key": "p17",
+      "community": "maharashtra-farmers",
+      "author": "gowri_demo",
+      "lang": "kn",
+      "title": "ಮಳೆ ದಾಖಲೆಯಲ್ಲಿ ಘಟಕ ಬರೆಯಿರಿ",
+      "body": "ಅಳತೆಯ ಪಕ್ಕದಲ್ಲಿ ಮಿಲಿಮೀಟರ್ ಅಥವಾ ಇಂಚು ಎಂದು ಬರೆಯುವುದರಿಂದ ಎರಡು ದಾಖಲೆಯನ್ನು ಗೊಂದಲವಿಲ್ಲದೆ ಓದಬಹುದು.",
+      "offsetMinutes": -1500,
+      "labels": {
+        "en": {
+          "title": "Always include units in rainfall logs",
+          "body": "Writing millimetres or inches right next to the gauge number prevents confusion when comparing multi-year seasonal rainfall trends."
+        },
+        "kn": {
+          "title": "ಮಳೆ ದಾಖಲೆಯಲ್ಲಿ ಘಟಕ ಬರೆಯಿರಿ",
+          "body": "ಅಳತೆಯ ಪಕ್ಕದಲ್ಲಿ ಮಿಲಿಮೀಟರ್ ಅಥವಾ ಇಂಚು ಎಂದು ಬರೆಯುವುದರಿಂದ ಎರಡು ದಾಖಲೆಯನ್ನು ಗೊಂದಲವಿಲ್ಲದೆ ಓದಬಹುದು."
+        },
+        "hi": {
+          "title": "बारिश के रिकॉर्ड में इकाई ज़रूर लिखें",
+          "body": "आंकड़ों के साथ मिलीमीटर या इंच ज़रूर लिखें ताकि पिछले वर्षों के रिकॉर्ड से तुलना करते समय कोई उलझन न रहे।"
+        }
+      }
+    },
+    {
+      "key": "p18",
+      "community": "onion-growers",
+      "author": "ravi_demo",
+      "lang": "hi",
+      "title": "मंडी नोट का नमूना",
+      "body": "सिर्फ़ उदाहरण: प्याज़, काल्पनिक मंडी, इकाई और समय। यहाँ कोई भाव या असली ख़रीद सूचना नहीं है।",
+      "offsetMinutes": -1590,
+      "labels": {
+        "en": {
+          "title": "Template for documenting local mandi arrivals",
+          "body": "Sample illustrative format: Onion crop, market yard, metric weight units, and date. Note: This is an educational tracking template."
+        },
+        "kn": {
+          "title": "ಮಂಡಿ ಮಾರುಕಟ್ಟೆ ದಾಖಲೆಯ ಮಾದರಿ",
+          "body": "ಮಾದರಿ ದಾಖಲೆ: ಈರುಳ್ಳಿ, ಮಾರುಕಟ್ಟೆ ಕೇಂದ್ರ, ತೂಕದ ಮಾನ ಮತ್ತು ದಿನಾಂಕ. ಇದು ಬೆಳೆ ಲೆಕ್ಕಾಚಾರಕ್ಕಾಗಿ ಉದಾಹರಣೆ ಮಾತ್ರ."
+        },
+        "hi": {
+          "title": "मंडी नोट का नमूना",
+          "body": "सिर्फ़ उदाहरण: प्याज़, काल्पनिक मंडी, इकाई और समय। यहाँ कोई भाव या असली ख़रीद सूचना नहीं है।"
+        }
+      }
+    }
+  ],
+  "comments": [
+    {
+      "key": "c01",
+      "post": "p01",
+      "author": "ravi_demo",
+      "lang": "en",
+      "body": "I use a private plot code and the date. I also ask the lab what else they need before collecting samples.",
+      "offsetMinutes": -59,
+      "labels": {
+        "en": {
+          "body": "I use a private plot code and the date. I also ask the lab what else they need before collecting samples."
+        },
+        "kn": {
+          "body": "ನಾನು ಜಮೀನಿನ ಕೋಡ್ ಮತ್ತು ದಿನಾಂಕವನ್ನು ಬರೆಯುತ್ತೇನೆ. ಮಾದರಿ ಸಂಗ್ರಹಿಸುವ ಮೊದಲು ಲ್ಯಾಬ್‌ನವರಿಗೆ ಅಗತ್ಯವಿರುವ ವಿವರ ಕೇಳಿ ತಿಳಿದುಕೊಳ್ಳಿ."
+        },
+        "hi": {
+          "body": "मैं खेत का कोड और तारीख लिखता हूँ। नमूना लेने से पहले लैब से भी पूछ लेता हूँ कि उन्हें क्या-क्या जानकारी चाहिए।"
+        }
+      }
+    },
+    {
+      "key": "c02",
+      "post": "p02",
+      "author": "gowri_demo",
+      "lang": "kn",
+      "body": "ಮೊದಲು ಯಾವ ದಿನ ಕಂಡಿತು ಮತ್ತು ಹೊಲದ ಯಾವ ಭಾಗದಲ್ಲಿ ಕಂಡಿತು ಎಂದು ಬರೆಯಿರಿ.",
+      "offsetMinutes": -148,
+      "labels": {
+        "en": {
+          "body": "First record on which date it appeared and in which corner of the plot. Also check the underside of the leaves for mites."
+        },
+        "kn": {
+          "body": "ಮೊದಲು ಯಾವ ದಿನ ಕಂಡಿತು ಮತ್ತು ಹೊಲದ ಯಾವ ಭಾಗದಲ್ಲಿ ಕಂಡಿತು ಎಂದು ಬರೆಯಿರಿ."
+        },
+        "hi": {
+          "body": "सबसे पहले यह नोट करें कि धब्बे किस तारीख को दिखे और खेत के किस हिस्से में हैं।"
+        }
+      }
+    },
+    {
+      "key": "c03",
+      "post": "p03",
+      "author": "ravi_demo",
+      "lang": "hi",
+      "body": "मैं तारीख और लाइन का हिस्सा लिखता हूँ। तुलना के लिए अगली बार वही लाइन देखता हूँ।",
+      "offsetMinutes": -237,
+      "labels": {
+        "en": {
+          "body": "I record the date and the specific line section. For comparison, I check the same dripper nozzle next week."
+        },
+        "kn": {
+          "body": "ನಾನು ದಿನಾಂಕ ಮತ್ತು ಹನಿ ಪೈಪಿನ ನಿರ್ದಿಷ್ಟ ಭಾಗವನ್ನು ಬರೆಯುತ್ತೇನೆ. ಹೋಲಿಕೆಗಾಗಿ ಮುಂದಿನ ವಾರ ಅದೇ ನಾಝಲ್ ಅನ್ನು ಪರೀಕ್ಷಿಸುತ್ತೇನೆ."
+        },
+        "hi": {
+          "body": "मैं तारीख और लाइन का हिस्सा लिखता हूँ। तुलना के लिए अगली बार वही लाइन देखता हूँ।"
+        }
+      }
+    },
+    {
+      "key": "c04",
+      "post": "p07",
+      "author": "ravi_demo",
+      "lang": "en",
+      "body": "“Not measured” is clearer than zero if nobody took a reading.",
+      "offsetMinutes": -596,
+      "labels": {
+        "en": {
+          "body": "Writing 'Not measured' is clearer than zero if nobody took a rain gauge reading that day."
+        },
+        "kn": {
+          "body": "ಅಳತೆ ಮಾಡದ ದಿನ ಸೊನ್ನೆ ಬರೆಯುವ ಬದಲು 'ಅಳೆಯಲಾಗಿಲ್ಲ' ಎಂದು ಬರೆದರೆ ಗೊಂದಲವಾಗುವುದಿಲ್ಲ."
+        },
+        "hi": {
+          "body": "अगर किसी दिन रीडिंग नहीं ली गई, तो शून्य लिखने के बजाय 'दर्ज नहीं किया' लिखना बेहतर रहता है।"
+        }
+      }
+    },
+    {
+      "key": "c05",
+      "post": "p08",
+      "author": "gowri_demo",
+      "lang": "kn",
+      "body": "ಮಾದರಿ ಸುದ್ದಿ ಎಂದು ಸ್ಪಷ್ಟವಾಗಿ ಬರೆಯುವುದು ಉಪಯುಕ್ತ.",
+      "offsetMinutes": -685,
+      "labels": {
+        "en": {
+          "body": "Clearly stating that it is a sample advisory note is very helpful for community readers."
+        },
+        "kn": {
+          "body": "ಮಾದರಿ ಸುದ್ದಿ ಎಂದು ಸ್ಪಷ್ಟವಾಗಿ ಬರೆಯುವುದು ಉಪಯುಕ್ತ."
+        },
+        "hi": {
+          "body": "यह एक नमूना नोट है, ऐसा स्पष्ट लिखना साथी किसानों के लिए बहुत मददगार रहता है।"
+        }
+      }
+    },
+    {
+      "key": "c06",
+      "post": "p09",
+      "author": "ravi_demo",
+      "lang": "hi",
+      "body": "पहली बार कब दिखा और कितने हिस्से में दिखा, यह बताना मददगार रहेगा।",
+      "offsetMinutes": -774,
+      "labels": {
+        "en": {
+          "body": "Noting when the symptom first appeared and how many crop rows are affected will be very helpful for the agronomist."
+        },
+        "kn": {
+          "body": "ಮೊದಲು ಯಾವಾಗ ಕಂಡಿತು ಮತ್ತು ಎಷ್ಟು ಸಾಲುಗಳಲ್ಲಿ ಹರಡಿದೆ ಎಂದು ತಿಳಿಸುವುದು ಕೃಷಿ ಅಧಿಕಾರಿಗೆ ಉಪಯುಕ್ತವಾಗುತ್ತದೆ."
+        },
+        "hi": {
+          "body": "पहली बार कब दिखा और कितने हिस्से में दिखा, यह बताना मददगार रहेगा।"
+        }
+      }
+    }
+  ],
+  "reports": [
+    {
+      "key": "r01",
+      "post": "p04",
+      "reporter": "gowri_demo",
+      "reason": "other",
+      "status": "open",
+      "offsetMinutes": -321
+    }
+  ]
+}

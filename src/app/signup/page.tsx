@@ -62,7 +62,12 @@ function compressPhoto(file: File): Promise<string> {
           return;
         }
         ctx.drawImage(img, 0, 0, width, height);
-        resolve(canvas.toDataURL('image/jpeg', 0.7));
+        const webpUrl = canvas.toDataURL('image/webp', 0.7);
+        if (webpUrl.startsWith('data:image/webp')) {
+          resolve(webpUrl);
+        } else {
+          resolve(canvas.toDataURL('image/jpeg', 0.7));
+        }
       };
       img.onerror = reject;
       img.src = e.target?.result as string;

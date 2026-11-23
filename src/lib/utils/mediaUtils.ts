@@ -1,6 +1,6 @@
 /**
  * Media compression and recording utilities for Krishi.
- * Strictly adheres to Rules A.4 (no npm packages) and E.3 (max 900px wide, JPEG 0.7).
+ * Strictly adheres to Rules A.4 (no npm packages) and E.3 (compressed WebP with JPEG fallback at 0.7 quality).
  */
 
 export function compressPostImage(file: File, maxDim = 900, quality = 0.7): Promise<string> {
@@ -31,7 +31,12 @@ export function compressPostImage(file: File, maxDim = 900, quality = 0.7): Prom
           return;
         }
         ctx.drawImage(img, 0, 0, width, height);
-        resolve(canvas.toDataURL('image/jpeg', quality));
+        const webpUrl = canvas.toDataURL('image/webp', quality);
+        if (webpUrl.startsWith('data:image/webp')) {
+          resolve(webpUrl);
+        } else {
+          resolve(canvas.toDataURL('image/jpeg', quality));
+        }
       };
       img.onerror = reject;
       img.src = e.target?.result as string;

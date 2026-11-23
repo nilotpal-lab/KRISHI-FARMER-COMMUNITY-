@@ -84,7 +84,7 @@ export default function NewCommunityPage() {
       if (res.success && res.community) {
         router.push(`/communities/${res.community.slug}`);
       } else {
-        setError(res.error || t('common.loadError'));
+        setError(res.error ? t(res.error) : t('common.loadError'));
       }
     }, 250);
   };

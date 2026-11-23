@@ -236,7 +236,7 @@ function CommunityPageWrapper({ slug }: { slug: string }) {
   const { t } = useI18n();
   return (
     <TaskShell backHref="/communities" backLabel={t('nav.groups')}>
-      <Suspense fallback={<div style={{ textAlign: 'center', padding: '32px' }}>Loading...</div>}>
+      <Suspense fallback={<div style={{ textAlign: 'center', padding: '32px' }}>{t('common.loading')}</div>}>
         <CommunityDetailContent slug={slug} />
       </Suspense>
     </TaskShell>

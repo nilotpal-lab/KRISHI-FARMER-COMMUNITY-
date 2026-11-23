@@ -213,7 +213,7 @@ function PostDetailContent({ postId }: { postId: string }) {
   }
 
   const groupName = community?.labels?.[locale]?.name || community?.name || post.communitySlug;
-  const isMember = currentUser?.role === 'member';
+  const isMember = currentUser?.role === 'member' || currentUser?.role === 'admin';
   const isGuest = !currentUser;
   const isOwnPost = currentUser?.username === post.authorUsername;
 
@@ -275,7 +275,7 @@ function PostDetailContent({ postId }: { postId: string }) {
       setIsReportingOpen(false);
       setHasReportedAlready(true);
     } else {
-      setReportError(res.error ? t(res.error) : 'Unable to submit report.');
+      setReportError(res.error ? t(res.error) : t('common.errorDesc'));
     }
   };
 
@@ -346,14 +346,14 @@ function PostDetailContent({ postId }: { postId: string }) {
                 alt={post.imageAlt || post.title}
                 className={styles.postPhoto}
               />
-              <div className={styles.photoOverlay}>
-                <span className={styles.photoBadge}>
-                  {t('post.photoEvidence')}
-                </span>
-                <span className={styles.photoCredit}>
-                  {t('post.photoDiagnostic', { group: groupName })}
-                </span>
-              </div>
+            </div>
+            <div className={styles.photoCaption}>
+              <span className={styles.photoBadge}>
+                {t('post.photoEvidence')}
+              </span>
+              <span className={styles.photoCredit}>
+                {t('post.photoDiagnostic', { group: groupName })}
+              </span>
             </div>
           </div>
         )}

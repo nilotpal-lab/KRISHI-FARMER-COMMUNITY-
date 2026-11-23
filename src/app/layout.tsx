@@ -134,6 +134,13 @@ export default function RootLayout({
         <I18nProvider>{children}</I18nProvider>
         <Script src="/assets/system.js" type="module" strategy="afterInteractive" />
         <Script src="/assets/layout/layout.js" type="module" strategy="afterInteractive" />
+        <Script
+          id="sw-register"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}`,
+          }}
+        />
       </body>
     </html>
   );

@@ -22,11 +22,12 @@ function ComposeForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const preselectedGroup = searchParams.get('group') || '';
+  const preselectedTitle = searchParams.get('title') || '';
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [joinedCommunities, setJoinedCommunities] = useState<Community[]>([]);
   const [selectedGroup, setSelectedGroup] = useState<string>(preselectedGroup);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(preselectedTitle);
   const [body, setBody] = useState('');
   const [lang, setLang] = useState<Locale>(locale);
   const [uploadedPhoto, setUploadedPhoto] = useState<string | null>(null);

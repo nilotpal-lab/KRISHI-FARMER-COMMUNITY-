@@ -220,7 +220,7 @@ export default function GuidesPage() {
                           className={styles.speakBtn}
                         >
                           <span>{isSpeaking ? '⏹️' : '🔊'}</span>
-                          <span>{isSpeaking ? 'Stop Audio' : 'Play Audio Guide'}</span>
+                          <span>{isSpeaking ? t('guides.stopAudio') : t('guides.playAudio')}</span>
                         </button>
 
                         <button

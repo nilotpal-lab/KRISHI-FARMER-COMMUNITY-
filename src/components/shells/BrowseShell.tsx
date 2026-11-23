@@ -118,6 +118,16 @@ export const BrowseShell: React.FC<BrowseShellProps> = ({ children }) => {
             </div>
             <div className="nav__item">
               <Link
+                href="/marketplace"
+                className="nav__link"
+                onClick={() => setIsNavOpen(false)}
+                aria-current={pathname === '/marketplace' ? 'page' : undefined}
+              >
+                {t('nav.marketplace')}
+              </Link>
+            </div>
+            <div className="nav__item">
+              <Link
                 href="/about"
                 className="nav__link"
                 onClick={() => setIsNavOpen(false)}
@@ -222,6 +232,7 @@ export const BrowseShell: React.FC<BrowseShellProps> = ({ children }) => {
                 <h4>{t('footer.platform')}</h4>
                 <ul>
                   <li><Link href="/about">{t('footer.about')}</Link></li>
+                  <li><Link href="/marketplace">{t('nav.marketplace')}</Link></li>
                   <li><Link href="/admin">{t('footer.moderation')}</Link></li>
                   <li><Link href="/login">{t('footer.signIn')}</Link></li>
                 </ul>

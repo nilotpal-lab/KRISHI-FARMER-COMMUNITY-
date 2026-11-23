@@ -30,6 +30,7 @@ const STORAGE_KEYS = {
   REPORTS: 'krishi_demo_reports_v5',
   UPVOTES: 'krishi_demo_upvotes_v5',
   GUIDE_SUGGESTIONS: 'krishi_guide_suggestions_v5',
+  MARKETPLACE_INTEREST: 'krishi_marketplace_interest_v5',
 };
 
 /**
@@ -861,26 +862,51 @@ class MockKrishiService {
 
   public submitGuideSuggestion(guideId: string, text: string): { success: boolean; error?: string } {
     const user = this.getCurrentUser();
-    if (!user) return { success: false, error: 'auth.required' };
     const clean = text.trim();
     if (!clean) return { success: false, error: 'Text required' };
     const all = this.getItem<GuideSuggestion[]>(STORAGE_KEYS.GUIDE_SUGGESTIONS, []);
     const suggestion: GuideSuggestion = {
       id: `sug_${Date.now()}`,
       guideId,
-      author: user.displayName || user.username,
+      author: user ? (user.displayName || user.username) : 'Guest Farmer',
       text: clean,
       status: 'pending',
       createdAt: new Date().toISOString(),
     };
     all.push(suggestion);
-    this.setItem(STORAGE_KEYS.GUIDE_SUGGESTIONS, all);
-    return { success: true };
+    try {
+      this.setItem(STORAGE_KEYS.GUIDE_SUGGESTIONS, all);
+      return { success: true };
+    } catch {
+      return { success: false, error: 'error.storageQuota' };
+    }
   }
 
   public getGuideSuggestions(guideId: string): GuideSuggestion[] {
     const all = this.getItem<GuideSuggestion[]>(STORAGE_KEYS.GUIDE_SUGGESTIONS, []);
     return all.filter((s) => s.guideId === guideId);
+  }
+
+  // --- Marketplace Interest ---
+  public getMarketplaceInterest(): boolean {
+    const user = this.getCurrentUser();
+    const userKey = user ? user.username : 'guest';
+    const interestMap = this.getItem<Record<string, boolean>>(STORAGE_KEYS.MARKETPLACE_INTEREST, {});
+    return !!interestMap[userKey];
+  }
+
+  public setMarketplaceInterest(interested: boolean): boolean {
+    const user = this.getCurrentUser();
+    const userKey = user ? user.username : 'guest';
+    const interestMap = this.getItem<Record<string, boolean>>(STORAGE_KEYS.MARKETPLACE_INTEREST, {});
+    interestMap[userKey] = interested;
+    try {
+      this.setItem(STORAGE_KEYS.MARKETPLACE_INTEREST, interestMap);
+      return true;
+    } catch (e) {
+      console.error('Failed to set marketplace interest', e);
+      return false;
+    }
   }
 }
 

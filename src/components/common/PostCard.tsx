@@ -226,20 +226,6 @@ export const PostCard: React.FC<PostCardProps> = ({ post, community }) => {
             <span>{sharedToast ? (locale === 'kn' ? 'ನಕಲಿಸಲಾಗಿದೆ!' : locale === 'hi' ? 'कॉपी हुआ!' : 'Copied!') : (locale === 'kn' ? 'ಹಂಚಿಕೊಳ್ಳಿ' : locale === 'hi' ? 'साझा करें' : 'Share')}</span>
           </button>
         </div>
-
-        <Link href={`/posts/${post.id}`} className="card__link">
-          <span>{t('post.openDiscussion')}</span>
-          <svg viewBox="0 0 12 12" aria-hidden="true">
-            <path
-              d="M2 6h8M6 2l4 4-4 4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </Link>
       </div>
     </article>
   );

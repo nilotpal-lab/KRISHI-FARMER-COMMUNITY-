@@ -176,9 +176,19 @@ export default function MandiPage() {
     <TaskShell backHref="/" backLabel={t('nav.home')} title={t('mandi.title')}>
       <div className={styles.container}>
         <header className={styles.header}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', backgroundColor: 'var(--color-mint, #e9efe8)', border: '1px solid var(--color-line, rgba(23, 40, 29, 0.15))', padding: '3px 8px', borderRadius: '4px', fontSize: '12px', fontWeight: 700, color: 'var(--p-action, #1f5134)', marginBottom: '8px' }}>
+            <span>ℹ️</span>
+            <span>{t('mandi.sampleBadge')}</span>
+          </div>
           <h1 className={styles.title}>{t('mandi.title')}</h1>
           <p className={styles.subtitle}>{t('mandi.subtitle')}</p>
         </header>
+
+        {/* Sample Disclaimer Banner */}
+        <div style={{ backgroundColor: '#fff9e6', border: '1px solid #ffd591', borderRadius: '8px', padding: '10px 14px', fontSize: '13px', color: '#874d00', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.4 }} role="note">
+          <span style={{ fontSize: '16px', lineHeight: 1 }}>⚠️</span>
+          <span>{t('mandi.sampleDisclaimer')}</span>
+        </div>
 
         {/* District Selector */}
         <div className={styles.districtBar}>

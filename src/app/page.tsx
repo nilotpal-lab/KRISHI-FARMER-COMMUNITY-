@@ -271,6 +271,12 @@ function HomeContent() {
               <h3 className={styles.laymanCardTitle}>{t('nav.schemes')}</h3>
               <p className={styles.laymanCardSub}>{t('schemes.subtitle')}</p>
             </Link>
+
+            <Link href="/marketplace" className={styles.laymanCard}>
+              <span className={styles.laymanCardIcon} aria-hidden="true">🛒</span>
+              <h3 className={styles.laymanCardTitle}>{t('nav.marketplace')}</h3>
+              <p className={styles.laymanCardSub}>{t('marketplace.comingSoon')}</p>
+            </Link>
           </div>
 
           <InlineComposer onPostCreated={loadData} />

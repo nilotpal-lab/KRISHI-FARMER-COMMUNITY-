@@ -118,9 +118,7 @@ export default function SignupWizardPage() {
     setter: React.Dispatch<React.SetStateAction<Locale[]>>
   ) => {
     if (current.includes(lang)) {
-      if (current.length > 1) {
-        setter(current.filter((l) => l !== lang));
-      }
+      setter(current.filter((l) => l !== lang));
     } else {
       setter([...current, lang]);
     }

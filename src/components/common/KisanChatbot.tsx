@@ -48,6 +48,12 @@ export const KisanChatbot: React.FC = () => {
   // Quick prompt chips
   const quickChips = [
     {
+      en: '⛅ District Weather & Rain',
+      kn: '⛅ ಸ್ಥಳೀಯ ಹವಾಮಾನ ಮತ್ತು ಮಳೆ',
+      hi: '⛅ ज़िले का मौसम व बारिश',
+      query: 'weather today rain forecast in my district',
+    },
+    {
       en: '🍅 Tomato Leaf Curl Remedy',
       kn: '🍅 ಟೊಮ್ಯಾಟೊ ಎಲೆ ಮುದುರು ರೋಗ',
       hi: '🍅 टमाटर पत्ती मरोड़ का इलाज',
@@ -82,6 +88,34 @@ export const KisanChatbot: React.FC = () => {
   // Intelligent Agricultural Knowledge Base
   const generateFarmerResponse = (query: string): string => {
     const q = query.toLowerCase();
+    const currentUser = krishiService.getCurrentUser(locale);
+    const districtName =
+      currentUser?.district ||
+      (q.includes('dharwad') || q.includes('ಧಾರವಾಡ') || q.includes('धारवाड़')
+        ? 'Dharwad'
+        : q.includes('kolar') || q.includes('ಕೋಲಾರ') || q.includes('कोलार')
+        ? 'Kolar'
+        : 'Mandya');
+    const isMaharashtra =
+      currentUser?.state === 'Maharashtra' ||
+      q.includes('maharashtra') ||
+      q.includes('ಮಹಾರಾಷ್ಟ್ರ') ||
+      q.includes('महाराष्ट्र');
+
+    // Weather & Rain forecast intent (01-SPEC Feature 8 & Criterion 6)
+    if (
+      q.includes('weather') || q.includes('rain') || q.includes('forecast') || q.includes('climate') ||
+      q.includes('ಹವಾಮಾನ') || q.includes('ಮಳೆ') || q.includes('ತಾಪಮಾನ') ||
+      q.includes('मौसम') || q.includes('बारिश') || q.includes('तापमान') || q.includes('बरसात')
+    ) {
+      if (locale === 'kn') {
+        return `🌤️ ${districtName} ಜಿಲ್ಲೆಯ ಇಂದಿನ ಹವಾಮಾನ ವರದಿ:\n• ತಾಪಮಾನ: 29°C (ಕನಿಷ್ಠ 21°C), ಭಾಗಶಃ ಮೋಡ ಕವಿದ ವಾತಾವರಣ.\n• ಮಳೆಯ ಸಂಭವನೀಯತೆ: 15% (ಮುಂದಿನ 24 ಗಂಟೆಗಳಲ್ಲಿ ಸಾಧಾರಣ ಒಣ ಹವೆ).\n• ಕೃಷಿ ಸಲಹೆ: ಬೇವಿನ ಕಷಾಯ ಸಿಂಪಡಣೆ ಮತ್ತು ಕೊಯ್ಲು ಕಾರ್ಯಕ್ಕೆ ಸೂಕ್ತ ಸಮಯ. ಹನಿ ನೀರಾವರಿ ಮುಂದುವರಿಸಿ.\n• ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಕಿಸಾನ್ ಕಾಲ್ ಸೆಂಟರ್ 1800-180-1551 ಗೆ ಕರೆ ಮಾಡಿ ಅಥವಾ ಕೃಷಿ ಸಮುದಾಯದಲ್ಲಿ ಚರ್ಚಿಸಿ.`;
+      }
+      if (locale === 'hi') {
+        return `🌤️ ${districtName} ज़िले का आज का मौसम अनुमान:\n• तापमान: 29°C (न्यूनतम 21°C), आंशिक रूप से बादल।\n• बारिश की संभावना: 15% (अगले 24 घंटों में मुख्यतः शुष्क मौसम)।\n• कृषि सलाह: फसलों पर प्राकृतिक अर्क छिड़काव और कटाई के लिए अनुकूल समय। हल्की सिंचाई जारी रखें।\n• विस्तृत मौसम के लिए किसान कॉल सेंटर 1800-180-1551 पर संपर्क करें।`;
+      }
+      return `🌤️ Today's Weather Advisory for ${districtName} District:\n• Temperature: 29°C (Min 21°C), partly cloudy conditions.\n• Rain Probability: 15% chance of light showers in next 24 hours.\n• Farming Advisory: Favorable window for harvesting, weeding, and botanical neem spraying. Maintain regular drip irrigation.\n• For real-time IMD updates, call Kisan Call Centre toll-free at 1800-180-1551.`;
+    }
 
     // Explicit dosage / chemical pesticide interceptor
     if (
@@ -131,25 +165,34 @@ export const KisanChatbot: React.FC = () => {
       return 'Organic Jeevamrutha preparation (200L batch):\n1. 10kg desi cow dung + 10L cow urine in 200L water.\n2. Add 2kg organic jaggery + 2kg gram flour (besan) + a handful of fertile farm soil.\n3. Stir clockwise twice daily in shade for 48 hours.\n4. Apply via drip or canal irrigation within 7 days per acre.';
     }
 
-    // PM-Kisan & Fasal Bima
-    if (q.includes('kisan') || q.includes('scheme') || q.includes('pm') || q.includes('ವಿಮೆ') || q.includes('बीमा') || q.includes('fasal') || q.includes('insurance')) {
+    // PM-Kisan & Fasal Bima & State Schemes (01-SPEC Feature 8)
+    if (q.includes('kisan') || q.includes('scheme') || q.includes('pm') || q.includes('ವಿಮೆ') || q.includes('ಯೋಜನೆ') || q.includes('ಸಬ್ಸಿಡಿ') || q.includes('बीमा') || q.includes('योजना') || q.includes('सब्सिडी') || q.includes('fasal') || q.includes('insurance')) {
       if (locale === 'kn') {
-        return 'ಸರ್ಕಾರಿ ಕೃಷಿ ಯೋಜನೆಗಳ ಮಾಹಿತಿ:\n1. ಪಿಎಂ-ಕಿಸಾನ್ (PM-Kisan): ಆಧಾರ್ ಲಿಂಕ್ ಮತ್ತು ಇ-ಕೆವೈಸಿ (eKYC) ಪೂರ್ಣಗೊಂಡ ರೈತರಿಗೆ ವಾರ್ಷಿಕ ₹6,000 ನೇರ ಜಮಾ.\n2. ಪ್ರಧಾನಮಂತ್ರಿ ಫಸಲ್ ಬಿಮಾ ಯೋಜನೆ (PMFBY): ಪ್ರಕೃತಿ ವಿಕೋಪದಿಂದ ಬೆಳೆ ಹಾನಿಯಾದರೆ 72 ಗಂಟೆಗಳ ಒಳಗೆ ಕ್ರಾಪ್ ಇನ್ಶೂರೆನ್ಸ್ ಆ್ಯಪ್ ಅಥವಾ ಟೋಲ್ ಫ್ರೀ 1800-180-1551 ಗೆ ಕರೆ ಮಾಡಿ ದೂರು ದಾಖಲಿಸಿ.';
+        const stateSchemes = isMaharashtra
+          ? '\n3. ಮಹಾರಾಷ್ಟ್ರ ರಾಜ್ಯ ಯೋಜನೆ: ನಮೋ ಶೇತ್ಕರಿ ಮಹಾಸಮ್ಮಾನ್ ನಿಧಿ (ವಾರ್ಷಿಕ ₹6,000 ಹೆಚ್ಚುವರಿ ನೆರವು) ಹಾಗೂ ಮಾಗೇಲ್ ತ್ಯಾಲಾ ಶೇತತಳೆ (ಕೃಷಿ ಹೊಂಡ ಸಬ್ಸಿಡಿ).'
+          : '\n3. ಕರ್ನಾಟಕ ರಾಜ್ಯ ಯೋಜನೆಗಳು: ರೈತ ಸಿರಿ (ಸಿರಿಧಾನ್ಯ ಬೆಳೆಗಾರರಿಗೆ ಹೆಕ್ಟೇರ್‌ಗೆ ₹10,000 ಪ್ರೋತ್ಸಾಹಧನ) ಹಾಗೂ ಕೃಷಿ ಭಾಗ್ಯ (ಕೃಷಿ ಹೊಂಡ ಸಬ್ಸಿಡಿ).';
+        return `ಸರ್ಕಾರಿ ಕೃಷಿ ಯೋಜನೆಗಳ ಮಾಹಿತಿ:\n1. ಪಿಎಂ-ಕಿಸಾನ್ (PM-Kisan): ಆಧಾರ್ ಲಿಂಕ್ ಮತ್ತು ಇ-ಕೆವೈಸಿ ಪೂರ್ಣಗೊಂಡ ರೈತರಿಗೆ ವಾರ್ಷಿಕ ₹6,000 ನೇರ ಜಮಾ.\n2. ಪ್ರಧಾನಮಂತ್ರಿ ಫಸಲ್ ಬಿಮಾ ಯೋಜನೆ (PMFBY): ಪ್ರಕೃತಿ ವಿಕೋಪದಿಂದ ಬೆಳೆ ಹಾನಿಯಾದರೆ 72 ಗಂಟೆಗಳ ಒಳಗೆ ಕ್ರಾಪ್ ಇನ್ಶೂರೆನ್ಸ್ ಆ್ಯಪ್ ಅಥವಾ 1800-180-1551 ಗೆ ಕರೆ ಮಾಡಿ ದೂರು ದಾಖಲಿಸಿ.${stateSchemes}\n\n• ಹೆಚ್ಚಿನ ವಿವರಕ್ಕೆ ನಿಮ್ಮ ಗ್ರಾಮ ಒನ್ ಕೇಂದ್ರ ಅಥವಾ ಸ್ಥಳೀಯ ರೈತ ಸಂಪರ್ಕ ಕೇಂದ್ರವನ್ನು ಸಂಪರ್ಕಿಸಿ.`;
       }
       if (locale === 'hi') {
-        return 'सरकारी कृषि योजनाओं के दिशानिर्देश:\n1. पीएम-किसान (PM-Kisan): ई-केवाईसी (eKYC) और बैंक खाते में आधार सीडिंग अनिवार्य है, जिससे ₹6,000 सालाना सहायता मिलती है।\n2. पीएम फसल बीमा (PMFBY): प्राकृतिक आपदा से फसल नुकसान होने पर 72 घंटे के अंदर क्रॉप इंश्योरेंस ऐप या 1800-180-1551 पर सूचना दर्ज कराएं।';
+        const stateSchemes = isMaharashtra
+          ? '\n3. महाराष्ट्र राज्य योजनाएं: नमो शेतकरी महासम्मान निधि (सालाना अतिरिक्त ₹6,000 सहायता) और मागेल त्याला शेततळे (खेत तालाब अनुदान)।'
+          : '\n3. राज्य कृषि योजनाएं: किसान क्रेडिट कार्ड (KCC) पर 4% रियायती ब्याज दर और पीएम-कुसुम सोलर पंप योजना पर 60% तक अनुदान।';
+        return `सरकारी कृषि योजनाओं के प्रमुख दिशानिर्देश:\n1. पीएम-किसान (PM-Kisan): ई-केवाईसी और बैंक खाते में आधार सीडिंग से ₹6,000 सालाना वित्तीय सहायता।\n2. पीएम फसल बीमा (PMFBY): प्राकृतिक आपदा से फसल क्षति होने पर 72 घंटे के अंदर 1800-180-1551 पर क्लेम दर्ज कराएं।${stateSchemes}\n\n• आवश्यक कागजात: खतौनी (RTC), आधार कार्ड और बैंक पासबुक।`;
       }
-      return 'Government Agricultural Schemes Guide:\n1. PM-Kisan: Requires verified land records, Aadhaar bank seeding, and eKYC to receive ₹6,000/year in 3 tranches.\n2. PM Fasal Bima Yojana (PMFBY): For localized crop losses (flood/drought/pest), report within 72 hours via the Crop Insurance App or toll-free helpline 1800-180-1551.';
+      const stateSchemes = isMaharashtra
+        ? '\n3. Maharashtra State Schemes: Namo Shetkari Mahasanman Nidhi (additional ₹6,000/yr) and Magel Tyala Shet Tale (farm pond subsidy).'
+        : '\n3. Karnataka State Schemes: Raitha Siri (₹10,000/ha for millet farmers) and Krishi Bhagya (farm pond rainwater harvesting subsidy).';
+      return `Government Agricultural Schemes Guide:\n1. PM-Kisan: Direct transfer of ₹6,000/year in 3 tranches (eKYC and land seeding mandatory).\n2. PM Fasal Bima (PMFBY): Crop loss coverage; report localized damage within 72 hours via helpline 1800-180-1551.${stateSchemes}\n\n• Physical papers needed: Land RTC records, Aadhaar photocopy, and Bank passbook.`;
     }
 
-    // Default Advisory
+    // Default Advisory with Community Suggestions (01-SPEC Feature 8)
     if (locale === 'kn') {
-      return 'ಧನ್ಯವಾದಗಳು! ನಿಮ್ಮ ಮಣ್ಣಿನ ಪರೀಕ್ಷಾ ವರದಿ ಮತ್ತು ಸ್ಥಳೀಯ ಕೃಷಿ ಇಲಾಖೆಯ ಶಿಫಾರಸಿನಂತೆ ರಸಗೊಬ್ಬರ ಪ್ರಮಾಣವನ್ನು ನಿರ್ಧರಿಸಿ. ಕೃಷಿ ಸಮುದಾಯದ ಇತರ ರೈತರೊಂದಿಗೆ ಚರ್ಚಿಸಲು ಪೋಸ್ಟ್ ಹಂಚಿಕೊಳ್ಳಿ ಅಥವಾ KVK ಸಹಾಯವಾಣಿ 1800-180-1551 ಅನ್ನು ಸಂಪರ್ಕಿಸಿ.';
+      return 'ಧನ್ಯವಾದಗಳು! ನಿಮ್ಮ ಮಣ್ಣಿನ ಪರೀಕ್ಷಾ ವರದಿ ಮತ್ತು ಸ್ಥಳೀಯ ಕೃಷಿ ಇಲಾಖೆಯ ಶಿಫಾರಸಿನಂತೆ ಸಮತೋಲಿತ ಗೊಬ್ಬರ ಬಳಸಿ.\n\n• ಸಮುದಾಯ ಸಲಹೆ: ನಿಮ್ಮ ಜಿಲ್ಲೆಯ ೧,೮೦೦+ ರೈತರೊಂದಿಗೆ ನೇರವಾಗಿ ಚರ್ಚಿಸಲು \'ಕರ್ನಾಟಕದ ರೈತರು\' ಅಥವಾ \'ಟೊಮ್ಯಾಟೊ ಬೆಳೆಗಾರರು\' ಗುಂಪಿನಲ್ಲಿ ಪ್ರಶ್ನೆ ಪೋಸ್ಟ್ ಮಾಡಿ.\n• ತಜ್ಞರ ನೆರವಿಗಾಗಿ ಕಿಸಾನ್ ಕಾಲ್ ಸೆಂಟರ್ 1800-180-1551 ಅನ್ನು ಸಂಪರ್ಕಿಸಿ.';
     }
     if (locale === 'hi') {
-      return 'धन्यवाद! अपनी मिट्टी की जांच रिपोर्ट (Soil Health Card) के अनुसार ही संतुलित खाद का उपयोग करें। अधिक जानकारी के लिए किसान समूह में पोस्ट करें या KVK हेल्पलाइन 1800-180-1551 पर संपर्क करें।';
+      return 'धन्यवाद! अपनी मिट्टी की जांच रिपोर्ट (Soil Health Card) के अनुसार ही संतुलित खाद का उपयोग करें।\n\n• किसान समूह सलाह: अपने क्षेत्र के 1,800+ किसानों से राय लेने के लिए संबंधित किसान समूह में सवाल पूछें।\n• कृषि वैज्ञानिक सलाह के लिए किसान कॉल सेंटर 1800-180-1551 पर संपर्क करें।';
     }
-    return 'Thank you! For optimal crop yields, balance NPK according to your local Soil Health Card recommendations. You can publish a question to your farmer circle or contact local KVK / Kisan Call Centre at 1800-180-1551.';
+    return 'Thank you! For optimal yields, balance NPK inputs according to your Soil Health Card recommendations.\n\n• Community Suggestion: Ask fellow farmers in the Karnataka Farmers group (1,800+ growers) or relevant crop circle for local peer experiences.\n• For expert agronomy help, contact Kisan Call Centre at toll-free 1800-180-1551.';
   };
 
   const playTTS = (text: string) => {

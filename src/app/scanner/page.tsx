@@ -265,16 +265,12 @@ export default function ScannerPage() {
           />
 
           {!scannedImage ? (
-            <div
-              className={styles.uploadZone}
-              onClick={() => fileInputRef.current?.click()}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') fileInputRef.current?.click();
-              }}
-            >
-              <button type="button" className={styles.cameraBtn}>
+            <div className={styles.uploadZone}>
+              <button
+                type="button"
+                className={styles.cameraBtn}
+                onClick={() => fileInputRef.current?.click()}
+              >
                 <span style={{ fontSize: '22px' }}>📷</span>
                 <span>{t('media.uploadPhoto')}</span>
               </button>
@@ -381,7 +377,13 @@ export default function ScannerPage() {
             {/* Action Bar */}
             <div className={styles.actionRow}>
               <Link
-                href={`/posts/new?group=karnataka-farmers&title=${encodeURIComponent(
+                href={`/posts/new?group=${
+                  selectedCrop === 'tomato'
+                    ? 'tomato-growers'
+                    : selectedCrop === 'chilli'
+                    ? 'chilli-growers'
+                    : 'karnataka-farmers'
+                }&title=${encodeURIComponent(
                   result.diseaseName[locale] || result.diseaseName.en
                 )}`}
                 className={styles.communityBtn}

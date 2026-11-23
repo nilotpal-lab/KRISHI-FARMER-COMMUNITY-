@@ -64,6 +64,7 @@ export interface Post {
   audioUrl?: string;
   kind?: 'normal' | 'problem';
   status?: 'open' | 'solved';
+  upvotes?: number;
   labels?: Partial<Record<Locale, PostLabels>>;
 }
 

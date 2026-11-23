@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Post, Community } from '@/types';
 import { useI18n } from '@/lib/i18n/context';
+import { krishiService } from '@/lib/services/krishiService';
 import { InitialsAvatar } from '@/components/ui/InitialsAvatar';
 import { useAutoTranslate } from '@/lib/utils/useAutoTranslate';
 import { TranslationBadge } from '@/components/common/TranslationBadge';
@@ -17,10 +18,15 @@ interface PostCardProps {
 export const PostCard: React.FC<PostCardProps> = ({ post, community }) => {
   const { t, formatDate, locale } = useI18n();
 
-  // Local state for interactive upvote and share feedback
-  const [upvotes, setUpvotes] = useState(12);
-  const [hasUpvoted, setHasUpvoted] = useState(false);
+  // Real persisted upvote state
+  const [upvotes, setUpvotes] = useState<number>(() => post.upvotes ?? 0);
+  const [hasUpvoted, setHasUpvoted] = useState<boolean>(false);
   const [sharedToast, setSharedToast] = useState(false);
+
+  useEffect(() => {
+    setUpvotes(krishiService.getPostUpvotes(post.id) || (post.upvotes ?? 0));
+    setHasUpvoted(krishiService.isPostUpvoted(post.id));
+  }, [post.id, post.upvotes]);
 
   // Translated community name if available
   const groupName =
@@ -71,21 +77,35 @@ export const PostCard: React.FC<PostCardProps> = ({ post, community }) => {
 
   const handleUpvote = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (hasUpvoted) {
-      setUpvotes((prev) => prev - 1);
-      setHasUpvoted(false);
-    } else {
-      setUpvotes((prev) => prev + 1);
-      setHasUpvoted(true);
-    }
+    const result = krishiService.toggleUpvotePost(post.id);
+    setUpvotes(result.upvotes);
+    setHasUpvoted(result.hasUpvoted);
   };
 
-  const handleShare = (e: React.MouseEvent) => {
+  const handleShare = async (e: React.MouseEvent) => {
     e.preventDefault();
+    const shareUrl = `${window.location.origin}/posts/${post.id}`;
+    const shareData = {
+      title: activeTitle,
+      text: `${activeTitle} - Krishi`,
+      url: shareUrl,
+    };
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch {
+        // user cancelled or share failed, fallback to clipboard
+      }
+    }
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
-      navigator.clipboard.writeText(`${window.location.origin}/posts/${post.id}`);
-      setSharedToast(true);
-      setTimeout(() => setSharedToast(false), 2000);
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        setSharedToast(true);
+        setTimeout(() => setSharedToast(false), 2000);
+      } catch {
+        // clipboard access failed
+      }
     }
   };
 

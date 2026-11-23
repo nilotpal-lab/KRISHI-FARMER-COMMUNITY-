@@ -27,6 +27,7 @@ const STORAGE_KEYS = {
   POSTS: 'krishi_demo_posts_v5',
   COMMENTS: 'krishi_demo_comments_v5',
   REPORTS: 'krishi_demo_reports_v5',
+  UPVOTES: 'krishi_demo_upvotes_v5',
 };
 
 /**
@@ -80,6 +81,7 @@ class MockKrishiService {
       this.notify();
     } catch (e) {
       console.error('Storage write error', e);
+      throw e;
     }
   }
 
@@ -593,6 +595,7 @@ class MockKrishiService {
       imageUrl: data.imageUrl || fallbackImg,
       imageAlt: data.imageAlt || fallbackAlt,
       audioUrl: data.audioUrl,
+      upvotes: 0,
       labels: {
         en: { title: titleTrimmed, body: bodyTrimmed },
         kn: { title: titleTrimmed, body: bodyTrimmed },
@@ -610,6 +613,59 @@ class MockKrishiService {
       }
       return { success: false, error: 'common.errorDesc' };
     }
+  }
+
+  // --- Upvotes ---
+  public getPostUpvotes(postId: string): number {
+    const post = this.getPostById(postId);
+    return post?.upvotes ?? 0;
+  }
+
+  public isPostUpvoted(postId: string): boolean {
+    const user = this.getCurrentUser();
+    const upvotedMap = this.getItem<Record<string, string[]>>(STORAGE_KEYS.UPVOTES, {});
+    const userKey = user ? user.username : 'guest';
+    const userUpvotes = upvotedMap[userKey] || [];
+    return userUpvotes.includes(postId);
+  }
+
+  public toggleUpvotePost(postId: string): { upvotes: number; hasUpvoted: boolean } {
+    const user = this.getCurrentUser();
+    const userKey = user ? user.username : 'guest';
+    const upvotedMap = this.getItem<Record<string, string[]>>(STORAGE_KEYS.UPVOTES, {});
+    const userUpvotes = new Set(upvotedMap[userKey] || []);
+
+    const all = this.getItem<Post[]>(STORAGE_KEYS.POSTS, getInitialPosts());
+    const postIndex = all.findIndex((p) => p.id === postId);
+    if (postIndex === -1) {
+      return { upvotes: 0, hasUpvoted: false };
+    }
+
+    const currentPost = all[postIndex];
+    let currentUpvotes = currentPost.upvotes ?? 0;
+    let hasUpvoted = false;
+
+    if (userUpvotes.has(postId)) {
+      userUpvotes.delete(postId);
+      currentUpvotes = Math.max(0, currentUpvotes - 1);
+      hasUpvoted = false;
+    } else {
+      userUpvotes.add(postId);
+      currentUpvotes += 1;
+      hasUpvoted = true;
+    }
+
+    upvotedMap[userKey] = Array.from(userUpvotes);
+    all[postIndex] = { ...currentPost, upvotes: currentUpvotes };
+
+    try {
+      this.setItem(STORAGE_KEYS.UPVOTES, upvotedMap);
+      this.setItem(STORAGE_KEYS.POSTS, all);
+    } catch (e) {
+      console.error('Failed to save upvote', e);
+    }
+
+    return { upvotes: currentUpvotes, hasUpvoted };
   }
 
   // --- Comments ---

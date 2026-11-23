@@ -111,9 +111,23 @@ export const PostCard: React.FC<PostCardProps> = ({ post, community }) => {
 
   const playPostTTS = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (typeof window === 'undefined' || !window.speechSynthesis) return;
+    if (typeof window === 'undefined') return;
+
+    const textToSpeak = `${activeTitle}. ${activeBody}`;
+
+    if (locale === 'kn') {
+      try {
+        const audio = new Audio(`/api/tts?lang=kn&text=${encodeURIComponent(textToSpeak.slice(0, 200))}`);
+        audio.play().catch(() => {});
+        return;
+      } catch {
+        // fallback below
+      }
+    }
+
+    if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(`${activeTitle}. ${activeBody}`);
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
     const targetLang = locale === 'kn' ? 'kn-IN' : locale === 'hi' ? 'hi-IN' : 'en-IN';
     utterance.lang = targetLang;
     utterance.rate = 0.9;

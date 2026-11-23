@@ -154,11 +154,23 @@ export default function MandiPage() {
   const items = DISTRICT_MANDIS[district] || DISTRICT_MANDIS.mandya;
 
   const playTTS = (item: MandiItem) => {
-    if (typeof window === 'undefined' || !window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
+    if (typeof window === 'undefined') return;
 
     const name = item.name[locale] || item.name.en;
     const priceText = `${name}. ${locale === 'kn' ? 'ಕ್ವಿಂಟಾಲ್‌ಗೆ ಬೆಲೆ' : locale === 'hi' ? 'क्विंटल भाव' : 'Price per quintal'}: ${item.modalPrice} ${locale === 'kn' ? 'ರೂಪಾಯಿ' : locale === 'hi' ? 'रुपये' : 'rupees'}. 50 ${locale === 'kn' ? 'ಕೆಜಿ ಚೀಲಕ್ಕೆ' : locale === 'hi' ? 'किलो बोरी' : 'kg bag'}: ${item.bagPrice} ${locale === 'kn' ? 'ರೂಪಾಯಿ' : locale === 'hi' ? 'रुपये' : 'rupees'}.`;
+
+    if (locale === 'kn') {
+      try {
+        const audio = new Audio(`/api/tts?lang=kn&text=${encodeURIComponent(priceText.slice(0, 200))}`);
+        audio.play().catch(() => {});
+        return;
+      } catch {
+        // fallback to speech synthesis below
+      }
+    }
+
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(priceText);
     utterance.lang = locale === 'kn' ? 'kn-IN' : locale === 'hi' ? 'hi-IN' : 'en-IN';

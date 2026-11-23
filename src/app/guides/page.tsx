@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { TaskShell } from '@/components/shells/TaskShell';
 import { useI18n } from '@/lib/i18n/context';
 import { CROP_GUIDES } from '@/lib/services/cropGuidesData';
@@ -45,21 +45,31 @@ export default function GuidesPage() {
     });
   }, [searchQuery, selectedCategory]);
 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
   const handleToggleExpand = (id: string) => {
     setExpandedCropId((prev) => (prev === id ? null : id));
     setSuggestingCropId(null);
     setSuggestionFeedback(null);
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
-      setIsSpeaking(false);
     }
+    setIsSpeaking(false);
   };
 
   const handleSpeakGuide = (crop: CropGuide) => {
-    if (!('speechSynthesis' in window)) return;
-
     if (isSpeaking) {
-      window.speechSynthesis.cancel();
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
       setIsSpeaking(false);
       return;
     }
@@ -71,6 +81,24 @@ export default function GuidesPage() {
     const harvestText = crop.harvest[locale] || crop.harvest.en;
 
     const fullNarration = `${cropName}. ${t('guides.sowing')}: ${sowingText}. ${t('guides.fertilizer')}: ${fertilizerText}. ${t('guides.pestCare')}: ${pestText}. ${t('guides.harvest')}: ${harvestText}.`;
+
+    if (locale === 'kn') {
+      try {
+        const audio = new Audio(`/api/tts?lang=kn&text=${encodeURIComponent(fullNarration.slice(0, 200))}`);
+        audioRef.current = audio;
+        audio.onended = () => setIsSpeaking(false);
+        audio.onerror = () => setIsSpeaking(false);
+        setIsSpeaking(true);
+        audio.play().catch(() => {
+          setIsSpeaking(false);
+        });
+        return;
+      } catch {
+        // fallback to speech synthesis below
+      }
+    }
+
+    if (!('speechSynthesis' in window)) return;
 
     const utterance = new SpeechSynthesisUtterance(fullNarration);
     utterance.lang = locale === 'kn' ? 'kn-IN' : locale === 'hi' ? 'hi-IN' : 'en-IN';

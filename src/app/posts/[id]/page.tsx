@@ -48,7 +48,19 @@ function CommentItemRow({
   });
 
   const playCommentTTS = () => {
-    if (typeof window === 'undefined' || !window.speechSynthesis) return;
+    if (typeof window === 'undefined') return;
+
+    if (locale === 'kn') {
+      try {
+        const audio = new Audio(`/api/tts?lang=kn&text=${encodeURIComponent(displayText.slice(0, 200))}`);
+        audio.play().catch(() => {});
+        return;
+      } catch {
+        // fallback below
+      }
+    }
+
+    if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(displayText);
     const targetLang = locale === 'kn' ? 'kn-IN' : locale === 'hi' ? 'hi-IN' : 'en-IN';
@@ -280,9 +292,21 @@ function PostDetailContent({ postId }: { postId: string }) {
   };
 
   const playPostTTS = () => {
-    if (typeof window === 'undefined' || !window.speechSynthesis || !post) return;
-    window.speechSynthesis.cancel();
+    if (typeof window === 'undefined' || !post) return;
     const textToSpeak = `${displayTitle || post.title}. ${displayBody || post.body}`;
+
+    if (locale === 'kn') {
+      try {
+        const audio = new Audio(`/api/tts?lang=kn&text=${encodeURIComponent(textToSpeak.slice(0, 200))}`);
+        audio.play().catch(() => {});
+        return;
+      } catch {
+        // fallback below
+      }
+    }
+
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     const targetLang = locale === 'kn' ? 'kn-IN' : locale === 'hi' ? 'hi-IN' : 'en-IN';
     utterance.lang = targetLang;

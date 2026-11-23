@@ -662,17 +662,17 @@ html:not([data-tone="dark"]) :is(.frame--cta, .frame--lit, .footer--statement) {
 .footer__mark .mark, .footer .nav__logo .mark { width: 0.8em; height: 0.8em; margin-right: 0.18em; vertical-align: -0.04em; }
 .footer__mark .mark--initial, .footer .nav__logo .mark--initial { width: 1em; height: 1em; font-size: 0.6em; }
 .nav--split .nav__logo .mark--initial { width: 26px; height: 26px; font-size: 15px; }
-.nav__links { display: flex; align-self: stretch; gap: var(--s-1); flex: 1; min-width: 0; }
+.nav__links { display: flex; align-self: stretch; align-items: center; gap: 2px; flex: 1 1 auto; min-width: 0; overflow: hidden; }
 .nav__item { display: flex; align-items: center; height: 100%; }
 .nav__link {
-  position: relative; display: inline-flex; align-items: center; gap: var(--s-1); height: 36px; padding: 0 var(--s-3); border-radius: var(--r-sm);
-  font-size: 15px; font-weight: 500; color: var(--ink); white-space: nowrap; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+  position: relative; display: inline-flex; align-items: center; gap: var(--s-1); height: 36px; padding: 0 var(--s-2); border-radius: var(--r-sm);
+  font-size: 14px; font-weight: 500; color: var(--ink); white-space: nowrap; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 /* a small laptop (1024-1279): the words sit closer, so a bar of four words never wraps or reaches the logo */
-@media (min-width: 1024px) and (max-width: 1279px) {
-  .nav__bar { gap: var(--s-6); }
-  .nav__link { padding: 0 var(--s-2); }
-  .nav__link::before, .nav__link[aria-current="page"]::after { left: var(--s-2); right: var(--s-2); }
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .nav__bar { gap: var(--s-4); }
+  .nav__link { padding: 0 6px; font-size: 13.5px; }
+  .nav__link::before, .nav__link[aria-current="page"]::after { left: 6px; right: 6px; }
   .nav__links { gap: 0; }
 }
 /* the words take no pill or fill (ST-08, ST-11): a 2px line draws under the word from the left on hover and focus and leaves to the right */
@@ -684,9 +684,9 @@ html:not([data-tone="dark"]) :is(.frame--cta, .frame--lit, .footer--statement) {
 /* the page you are on: a 2px bar under its word (still, the same inset as the hover line) */
 .nav__link[aria-current="page"]::after { content: ""; position: absolute; left: var(--s-3); right: var(--s-3); bottom: -2px; height: 2px; border-radius: 2px; background: currentColor; }
 .nav__expand { display: none; }
-.nav__actions { display: flex; align-items: center; gap: var(--s-4); flex: none; }
+.nav__actions { display: flex; align-items: center; gap: var(--s-2); flex-shrink: 0; margin-left: auto; }
 /* the bar's button: the page's primary at the one button height (44, 48 with data-buttons="block"; ST-09) */
-.nav__actions .btn { height: var(--btn-h); padding-inline: var(--s-5); font-size: 15px; }
+.nav__actions .btn { height: var(--btn-h); padding-inline: var(--s-4); font-size: 14px; }
 .nav__actions > .nav__link { padding-inline: var(--s-2); }
 .nav__toggle { display: none; }
 
@@ -711,7 +711,7 @@ html:not([data-tone="dark"]) :is(.frame--cta, .frame--lit, .footer--statement) {
 .menu-card { display: grid; gap: var(--s-3); }
 .menu-card .panel { --ratio: 56.25%; }
 
-@media (max-width: 1023px) {
+@media (max-width: 1199px) {
   .nav__links, .nav__actions { display: none; }
   /* the menu button takes the secondary button's look on a 44px tap area */
   .nav__toggle {
@@ -753,7 +753,7 @@ html:not([data-tone="dark"]) :is(.frame--cta, .frame--lit, .footer--statement) {
 }
 /* a tablet and a phone (1023 and below, ST-15): the main button stays in the bar, at the right line
    with the menu button 12px after it; the plain words go to the sheet */
-@media (max-width: 1023px) {
+@media (max-width: 1199px) {
   .nav__bar { gap: var(--s-3); }
   .nav:not(.is-open) .nav__actions { display: flex; margin-left: auto; }
   .nav:not(.is-open) .nav__actions > :not(.btn--primary) { display: none; }

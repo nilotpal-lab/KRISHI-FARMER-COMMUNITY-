@@ -82,6 +82,19 @@ export default function WelcomePage() {
       return;
     }
 
+    if (lang.code === 'kn') {
+      try {
+        const audio = new Audio(`/api/tts?lang=kn&text=${encodeURIComponent(lang.speechText)}`);
+        audio.onplay = () => setActiveSpeaking(lang.code);
+        audio.onended = () => setActiveSpeaking(null);
+        audio.onerror = () => setActiveSpeaking(null);
+        audio.play();
+        return;
+      } catch {
+        // fallback to speech synthesis below
+      }
+    }
+
     try {
       window.speechSynthesis.cancel(); // Cancel any ongoing speech
 

@@ -154,6 +154,33 @@
   border-radius: 50%;
 }
 
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.newChatBtn {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-line, rgba(23, 40, 29, 0.16));
+  border-radius: 6px;
+  color: var(--p-action, #1f5134);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  min-height: 44px;
+  transition: all 140ms ease;
+}
+
+.newChatBtn:hover {
+  background-color: var(--color-mint, #e9efe8);
+  border-color: var(--p-action, #1f5134);
+}
+
 .closeBtn {
   background: transparent;
   border: none;
@@ -262,9 +289,16 @@
 }
 
 .userBubble {
-  background-color: var(--p-action, #1f5134);
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #17281d;
+  border: 1px solid rgba(23, 40, 29, 0.16);
   border-top-right-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.userBubble p,
+.userBubble span {
+  color: #17281d !important;
 }
 
 .msgTime {
@@ -322,6 +356,53 @@
   animation-delay: 0.4s;
 }
 
+/* Active Listening Notice Banner */
+.listeningNotice {
+  background-color: #fee2e2;
+  border-top: 1px solid #fecaca;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 500;
+  color: #991b1b;
+}
+
+.listeningNoticeText {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.listeningDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ef4444;
+}
+
+.stopListenBtn {
+  background: #ffffff;
+  border: 1px solid #ef4444;
+  color: #b91c1c;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 120ms ease;
+}
+
+.stopListenBtn:hover {
+  background-color: #fef2f2;
+}
+
 /* Input Area */
 .inputForm {
   display: flex;
@@ -352,13 +433,7 @@
   background-color: #fee2e2;
   border-color: #ef4444;
   color: #b91c1c;
-  animation: pulseMic 1.2s infinite;
-}
-
-@keyframes pulseMic {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1); }
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25);
 }
 
 .chatInput {

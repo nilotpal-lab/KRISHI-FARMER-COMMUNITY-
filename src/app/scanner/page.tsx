@@ -193,14 +193,25 @@ export default function ScannerPage() {
   };
 
   const playTTS = () => {
-    if (!result || typeof window === 'undefined' || !window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
+    if (!result || typeof window === 'undefined') return;
 
     const name = result.diseaseName[locale] || result.diseaseName.en;
     const cause = result.cause[locale] || result.cause.en;
     const remedies = (result.remedies[locale] || result.remedies.en).join('. ');
     const textToSpeak = `${name}. ${cause}. ${remedies}. ${t('scanner.kvkAdvice')}`;
 
+    if (locale === 'kn') {
+      try {
+        const audio = new Audio(`/api/tts?lang=kn&text=${encodeURIComponent(textToSpeak.slice(0, 200))}`);
+        audio.play().catch(() => {});
+        return;
+      } catch {
+        // fallback to speech synthesis below
+      }
+    }
+
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.lang = locale === 'kn' ? 'kn-IN' : locale === 'hi' ? 'hi-IN' : 'en-IN';
     utterance.rate = 0.9;

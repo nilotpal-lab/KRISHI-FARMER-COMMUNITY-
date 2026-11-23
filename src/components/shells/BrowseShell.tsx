@@ -20,6 +20,7 @@ export const BrowseShell: React.FC<BrowseShellProps> = ({ children }) => {
   const { t, locale } = useI18n();
   const pathname = usePathname();
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const [user, setUser] = useState<UserProfile | null>(null);
 
   useEffect(() => {
@@ -44,12 +45,12 @@ export const BrowseShell: React.FC<BrowseShellProps> = ({ children }) => {
 
   return (
     <>
-      <header className="nav">
+      <header className={`nav ${isNavOpen ? 'is-open' : ''}`}>
         <div className="wrap nav__bar">
           <a className="skip-link" href="#main-content">
             {t('nav.skip')}
           </a>
-          <Link href="/" className="nav__logo">
+          <Link href="/" className="nav__logo" onClick={() => setIsNavOpen(false)}>
             <span className="mark" data-mark="leaf" aria-hidden="true" />
             <span>{t('brand.title')}</span>
           </Link>
@@ -59,6 +60,7 @@ export const BrowseShell: React.FC<BrowseShellProps> = ({ children }) => {
               <Link
                 href="/"
                 className="nav__link"
+                onClick={() => setIsNavOpen(false)}
                 aria-current={isHome ? 'page' : undefined}
               >
                 {t('nav.home')}
@@ -68,6 +70,7 @@ export const BrowseShell: React.FC<BrowseShellProps> = ({ children }) => {
               <Link
                 href="/communities"
                 className="nav__link"
+                onClick={() => setIsNavOpen(false)}
                 aria-current={isCommunities ? 'page' : undefined}
               >
                 {t('nav.groups')}
@@ -75,14 +78,65 @@ export const BrowseShell: React.FC<BrowseShellProps> = ({ children }) => {
             </div>
             <div className="nav__item">
               <Link
+                href="/scanner"
+                className="nav__link"
+                onClick={() => setIsNavOpen(false)}
+                aria-current={pathname === '/scanner' ? 'page' : undefined}
+              >
+                {t('nav.scanner')}
+              </Link>
+            </div>
+            <div className="nav__item">
+              <Link
+                href="/mandi"
+                className="nav__link"
+                onClick={() => setIsNavOpen(false)}
+                aria-current={pathname === '/mandi' ? 'page' : undefined}
+              >
+                {t('nav.mandi')}
+              </Link>
+            </div>
+            <div className="nav__item">
+              <Link
+                href="/schemes"
+                className="nav__link"
+                onClick={() => setIsNavOpen(false)}
+                aria-current={pathname === '/schemes' ? 'page' : undefined}
+              >
+                {t('nav.schemes')}
+              </Link>
+            </div>
+            <div className="nav__item">
+              <Link
+                href="/guides"
+                className="nav__link"
+                onClick={() => setIsNavOpen(false)}
+                aria-current={pathname === '/guides' ? 'page' : undefined}
+              >
+                {t('nav.guides')}
+              </Link>
+            </div>
+            <div className="nav__item">
+              <Link
                 href="/about"
                 className="nav__link"
+                onClick={() => setIsNavOpen(false)}
                 aria-current={pathname === '/about' ? 'page' : undefined}
               >
                 {t('nav.about')}
               </Link>
             </div>
           </nav>
+
+          <button
+            type="button"
+            className={styles.mobileLangBtn}
+            onClick={() => setIsLangOpen(true)}
+            aria-label={t('nav.language')}
+          >
+            <GlobeIcon size={16} />
+            <span>{langDisplay}</span>
+          </button>
 
           <div className="nav__actions">
             <DemoBar />
@@ -96,11 +150,11 @@ export const BrowseShell: React.FC<BrowseShellProps> = ({ children }) => {
               <span>{langDisplay}</span>
             </button>
             {user ? (
-              <Link href="/profile" className="btn btn--secondary btn--sm">
+              <Link href="/profile" className="btn btn--secondary btn--sm" onClick={() => setIsNavOpen(false)}>
                 {user.displayName}
               </Link>
             ) : (
-              <Link href="/login" className="btn btn--primary btn--sm">
+              <Link href="/login" className="btn btn--primary btn--sm" onClick={() => setIsNavOpen(false)}>
                 {t('auth.signIn')}
               </Link>
             )}
@@ -109,11 +163,16 @@ export const BrowseShell: React.FC<BrowseShellProps> = ({ children }) => {
           <button
             className="nav__toggle"
             type="button"
-            aria-expanded="false"
+            onClick={() => setIsNavOpen((prev) => !prev)}
+            aria-expanded={isNavOpen}
             aria-label={t('nav.menu')}
           >
-            <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
-              <path d="M2 5h14M2 13h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+            <svg width="20" height="20" viewBox="0 0 18 18" aria-hidden="true">
+              {isNavOpen ? (
+                <path d="M4 4l10 10M14 4L4 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              ) : (
+                <path d="M2 5h14M2 13h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              )}
             </svg>
           </button>
         </div>
@@ -184,6 +243,20 @@ export const BrowseShell: React.FC<BrowseShellProps> = ({ children }) => {
         >
           <HomeIcon size={20} />
           <span>{t('nav.home')}</span>
+        </Link>
+        <Link
+          href="/scanner"
+          className={`actionbar__item ${pathname === '/scanner' ? 'is-active' : ''}`}
+        >
+          <span style={{ fontSize: '18px', lineHeight: 1 }} aria-hidden="true">📸</span>
+          <span>{t('nav.scanner')}</span>
+        </Link>
+        <Link
+          href="/mandi"
+          className={`actionbar__item ${pathname === '/mandi' ? 'is-active' : ''}`}
+        >
+          <span style={{ fontSize: '18px', lineHeight: 1 }} aria-hidden="true">💰</span>
+          <span>{t('nav.mandi')}</span>
         </Link>
         <Link
           href="/communities"

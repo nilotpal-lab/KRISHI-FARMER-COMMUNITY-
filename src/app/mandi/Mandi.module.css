@@ -1,0 +1,224 @@
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-md, 16px) 0 clamp(48px, 6vh, 80px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 16px);
+}
+
+.header {
+  margin-bottom: var(--space-xs, 8px);
+}
+
+.title {
+  font-family: var(--font-display, var(--font-text));
+  font-size: clamp(22px, 5vw, 28px);
+  font-weight: 700;
+  color: var(--p-ink, #17281d);
+  line-height: 1.25;
+  margin: 0 0 6px 0;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--p-muted, #3d4d43);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.districtBar {
+  background-color: #ffffff;
+  border: 1px solid var(--color-line, rgba(23, 40, 29, 0.14));
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.districtLabel {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--p-ink, #17281d);
+}
+
+.districtChips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.districtChips::-webkit-scrollbar {
+  display: none;
+}
+
+.districtChip {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1.5px solid var(--color-line, rgba(23, 40, 29, 0.16));
+  background-color: var(--p-bg, #f6f5ec);
+  color: var(--p-ink, #17281d);
+  cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 120ms ease;
+  flex-shrink: 0;
+}
+
+.districtChipActive {
+  background-color: var(--p-action, #1f5134);
+  color: #ffffff;
+  border-color: var(--p-action, #1f5134);
+}
+
+.ratesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rateCard {
+  background-color: #ffffff;
+  border: 1px solid var(--color-line, rgba(23, 40, 29, 0.14));
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(23, 40, 29, 0.04);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cropNameWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cropIcon {
+  font-size: 24px;
+}
+
+.cropName {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--p-ink, #17281d);
+  margin: 0;
+}
+
+.varietyName {
+  font-size: 13px;
+  color: var(--p-muted, #3d4d43);
+  margin: 2px 0 0 0;
+}
+
+.trendBadge {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.trendUp {
+  background-color: #e6f7ec;
+  color: #1a7a3e;
+}
+
+.trendDown {
+  background-color: #fde8e8;
+  color: #b91c1c;
+}
+
+.trendStable {
+  background-color: var(--p-bg, #f6f5ec);
+  color: var(--p-muted, #3d4d43);
+}
+
+.priceRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 12px;
+  background-color: #faf9f4;
+  border-radius: 8px;
+}
+
+.priceCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.priceLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--p-muted, #3d4d43);
+}
+
+.priceValue {
+  font-size: clamp(20px, 4vw, 24px);
+  font-weight: 800;
+  color: var(--p-action, #1f5134);
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.bagValue {
+  font-size: clamp(16px, 3.5vw, 18px);
+  font-weight: 700;
+  color: var(--p-ink, #17281d);
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.cardBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--color-line, rgba(23, 40, 29, 0.08));
+  padding-top: 10px;
+}
+
+.arrivalText {
+  font-size: 13px;
+  color: var(--p-muted, #3d4d43);
+  font-weight: 500;
+}
+
+.speakBtn {
+  background-color: var(--p-bg, #f6f5ec);
+  border: 1px solid var(--color-line, rgba(23, 40, 29, 0.16));
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--p-action, #1f5134);
+  cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 120ms ease;
+}
+
+.speakBtn:hover {
+  background-color: var(--color-mint, #e9efe8);
+}

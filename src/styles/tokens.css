@@ -13,7 +13,7 @@
   /* Typography Ramp */
   --color-ink: var(--p-ink, #17281d);
   --color-muted: var(--p-muted, #5d695e);
-  --color-muted-light: #758679;
+  --color-muted-light: #3d4d43;
 
   /* Clean Hairline Borders (6% to 12% opacity) */
   --color-line: rgba(23, 40, 29, 0.12);

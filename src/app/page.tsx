@@ -245,6 +245,34 @@ function HomeContent() {
               {t('home.discussionsTitle')} <span className="muted">{t('home.discussionsMuted')}</span>
             </h2>
           </div>
+
+          {/* Layman Action Cards Grid */}
+          <div className={styles.laymanCardsGrid} role="navigation" aria-label="Farmer Quick Tools">
+            <Link href="/scanner" className={styles.laymanCard}>
+              <span className={styles.laymanCardIcon} aria-hidden="true">📸</span>
+              <h3 className={styles.laymanCardTitle}>{t('nav.scanner')}</h3>
+              <p className={styles.laymanCardSub}>{t('scanner.subtitle')}</p>
+            </Link>
+
+            <Link href="/mandi" className={styles.laymanCard}>
+              <span className={styles.laymanCardIcon} aria-hidden="true">💰</span>
+              <h3 className={styles.laymanCardTitle}>{t('nav.mandi')}</h3>
+              <p className={styles.laymanCardSub}>{t('mandi.subtitle')}</p>
+            </Link>
+
+            <Link href="/guides" className={styles.laymanCard}>
+              <span className={styles.laymanCardIcon} aria-hidden="true">🌾</span>
+              <h3 className={styles.laymanCardTitle}>{t('nav.guides')}</h3>
+              <p className={styles.laymanCardSub}>{t('guides.subtitle')}</p>
+            </Link>
+
+            <Link href="/schemes" className={styles.laymanCard}>
+              <span className={styles.laymanCardIcon} aria-hidden="true">🏛️</span>
+              <h3 className={styles.laymanCardTitle}>{t('nav.schemes')}</h3>
+              <p className={styles.laymanCardSub}>{t('schemes.subtitle')}</p>
+            </Link>
+          </div>
+
           <InlineComposer onPostCreated={loadData} />
           <div className="grid open-cards">
             {postsData.items.map((post) => (

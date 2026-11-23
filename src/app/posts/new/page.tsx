@@ -44,13 +44,20 @@ function ComposeForm() {
 
     const memberships = krishiService.getMemberships(user.username);
     const all = krishiService.getCommunities('all', 1, 100, locale).items;
-    const joined = all.filter((c) => memberships.includes(c.slug));
-    setJoinedCommunities(joined);
+    let joined = all.filter((c) => memberships.includes(c.slug));
+    if (joined.length === 0 && all.length > 0) {
+      // Auto-join default community so farmer is never blocked from posting
+      krishiService.joinCommunity(all[0].slug);
+      joined = [all[0]];
+    }
+    setJoinedCommunities(joined.length > 0 ? joined : all);
 
     if (preselectedGroup && memberships.includes(preselectedGroup)) {
       setSelectedGroup(preselectedGroup);
     } else if (joined.length > 0) {
       setSelectedGroup(joined[0].slug);
+    } else if (all.length > 0) {
+      setSelectedGroup(all[0].slug);
     }
   }, [router, preselectedGroup, locale]);
 
@@ -80,21 +87,26 @@ function ComposeForm() {
     e.preventDefault();
     setError(null);
 
-    if (!selectedGroup) {
+    const targetGroup = selectedGroup || (joinedCommunities[0]?.slug);
+    if (!targetGroup) {
       setError(t('form.selectGroup'));
       return;
     }
 
-    const titleTrimmed = title.trim();
+    let titleTrimmed = title.trim();
     if (titleTrimmed.length < 5 || titleTrimmed.length > 100) {
-      setError(t('form.titleHelp'));
-      return;
+      if (audioUrl) {
+        titleTrimmed = `${t('post.defaultVoiceTitle')} (${new Date().toLocaleDateString()})`;
+      } else {
+        setError(t('form.titleHelp'));
+        return;
+      }
     }
 
     let bodyTrimmed = body.trim();
     if (!bodyTrimmed && audioUrl) {
-      bodyTrimmed = '🎙️ Voice note';
-    } else if (bodyTrimmed.length < 10 || bodyTrimmed.length > 1500) {
+      bodyTrimmed = t('post.defaultVoiceBody');
+    } else if (!audioUrl && (bodyTrimmed.length < 10 || bodyTrimmed.length > 1500)) {
       setError(t('form.bodyHelp'));
       return;
     }
@@ -103,7 +115,7 @@ function ComposeForm() {
 
     setTimeout(() => {
       const res = krishiService.publishPost({
-        communitySlug: selectedGroup,
+        communitySlug: targetGroup,
         title: titleTrimmed,
         body: bodyTrimmed,
         lang,
@@ -224,6 +236,7 @@ function ComposeForm() {
               ref={fileInputRef}
               type="file"
               accept="image/*"
+              capture="environment"
               style={{ display: 'none' }}
               onChange={handlePhotoUpload}
               id="post-photo-upload"
@@ -255,13 +268,15 @@ function ComposeForm() {
                     backgroundColor: 'rgba(0,0,0,0.7)',
                     color: '#fff',
                     border: 'none',
-                    borderRadius: '6px',
-                    padding: '6px 10px',
-                    fontSize: '12px',
+                    borderRadius: '8px',
+                    padding: '10px 14px',
+                    fontSize: '14px',
+                    minHeight: '44px',
+                    minWidth: '44px',
                     cursor: 'pointer',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '4px',
+                    gap: '6px',
                   }}
                 >
                   <Trash2 size={14} />

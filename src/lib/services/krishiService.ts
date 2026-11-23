@@ -8,7 +8,8 @@ import {
   PaginatedResult, 
   Locale, 
   ReportReason,
-  CommunityKind
+  CommunityKind,
+  GuideSuggestion
 } from '@/types';
 import { 
   getInitialDemoAccounts, 
@@ -28,6 +29,7 @@ const STORAGE_KEYS = {
   COMMENTS: 'krishi_demo_comments_v5',
   REPORTS: 'krishi_demo_reports_v5',
   UPVOTES: 'krishi_demo_upvotes_v5',
+  GUIDE_SUGGESTIONS: 'krishi_guide_suggestions_v5',
 };
 
 /**
@@ -423,6 +425,10 @@ class MockKrishiService {
     return true;
   }
 
+  public joinCommunity(slug: string): boolean {
+    return this.setMembership(slug, true);
+  }
+
   public createCommunity(data: {
     name: string;
     description: string;
@@ -703,12 +709,13 @@ class MockKrishiService {
 
     const memberships = this.getMemberships(user.username);
     if (!memberships.includes(post.communitySlug)) {
-      return { success: false, error: 'form.joinToCommentNotice' };
+      // Auto-join community so farmer is never locked out of helping peers
+      this.joinCommunity(post.communitySlug);
     }
 
     let bodyTrimmed = data.body.trim();
     if (data.audioUrl && !bodyTrimmed) {
-      bodyTrimmed = '🎙️ Voice comment';
+      bodyTrimmed = data.lang === 'kn' ? '🎙️ ಧ್ವನಿ ಪ್ರತಿಕ್ರಿಯೆ' : data.lang === 'hi' ? '🎙️ आवाज़ टिप्पणी' : '🎙️ Voice comment';
     }
 
     if (bodyTrimmed.length < 2 || bodyTrimmed.length > 600) {
@@ -850,6 +857,30 @@ class MockKrishiService {
     }
 
     return { success: false };
+  }
+
+  public submitGuideSuggestion(guideId: string, text: string): { success: boolean; error?: string } {
+    const user = this.getCurrentUser();
+    if (!user) return { success: false, error: 'auth.required' };
+    const clean = text.trim();
+    if (!clean) return { success: false, error: 'Text required' };
+    const all = this.getItem<GuideSuggestion[]>(STORAGE_KEYS.GUIDE_SUGGESTIONS, []);
+    const suggestion: GuideSuggestion = {
+      id: `sug_${Date.now()}`,
+      guideId,
+      author: user.displayName || user.username,
+      text: clean,
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+    };
+    all.push(suggestion);
+    this.setItem(STORAGE_KEYS.GUIDE_SUGGESTIONS, all);
+    return { success: true };
+  }
+
+  public getGuideSuggestions(guideId: string): GuideSuggestion[] {
+    const all = this.getItem<GuideSuggestion[]>(STORAGE_KEYS.GUIDE_SUGGESTIONS, []);
+    return all.filter((s) => s.guideId === guideId);
   }
 }
 

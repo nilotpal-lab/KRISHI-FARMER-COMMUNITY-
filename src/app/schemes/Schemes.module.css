@@ -1,0 +1,176 @@
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-md, 16px) 0 clamp(48px, 6vh, 80px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 16px);
+}
+
+.header {
+  margin-bottom: var(--space-xs, 8px);
+}
+
+.title {
+  font-family: var(--font-display, var(--font-text));
+  font-size: clamp(22px, 5vw, 28px);
+  font-weight: 700;
+  color: var(--p-ink, #17281d);
+  line-height: 1.25;
+  margin: 0 0 6px 0;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--p-muted, #3d4d43);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.checklistCard {
+  background-color: #faf9f4;
+  border: 1.5px solid var(--p-action, #1f5134);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checklistTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--p-action, #1f5134);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checklistItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background-color: #ffffff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--color-line, rgba(23, 40, 29, 0.12));
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--p-ink, #17281d);
+}
+
+.schemeList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.schemeCard {
+  background-color: #ffffff;
+  border: 1px solid var(--color-line, rgba(23, 40, 29, 0.14));
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(23, 40, 29, 0.04);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.schemeTitleWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.schemeName {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--p-ink, #17281d);
+  margin: 0;
+}
+
+.benefitBadge {
+  background-color: var(--color-mint, #e9efe8);
+  color: var(--p-action, #1f5134);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--p-muted, #3d4d43);
+  margin: 0;
+}
+
+.detailsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: #faf9f4;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--color-line, rgba(23, 40, 29, 0.08));
+  padding-top: 10px;
+}
+
+.ttsBtn {
+  background-color: var(--p-bg, #f6f5ec);
+  border: 1px solid var(--color-line, rgba(23, 40, 29, 0.16));
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--p-action, #1f5134);
+  cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 120ms ease;
+}
+
+.ttsBtn:hover {
+  background-color: var(--color-mint, #e9efe8);
+}
+
+.helplineBox {
+  background-color: #e9efe8;
+  border: 1px solid var(--p-action, #1f5134);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--p-action, #1f5134);
+}

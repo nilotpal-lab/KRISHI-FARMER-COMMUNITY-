@@ -1,0 +1,17 @@
+{
+  "name": "Krishi - Farmer Community",
+  "short_name": "Krishi",
+  "description": "Indian farmer community, crop advisory and schemes helper",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f5ec",
+  "theme_color": "#1f5134",
+  "icons": [
+    {
+      "src": "/assets/farmers/mascot_kisan.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -71,18 +71,22 @@ export const InlineComposer: React.FC<InlineComposerProps> = ({
     e.preventDefault();
     setError(null);
 
-    const trimmedTitle = title.trim();
+    let trimmedTitle = title.trim();
     let trimmedBody = body.trim();
 
     if (trimmedTitle.length < 5 || trimmedTitle.length > 100) {
-      setError(locale === 'kn' ? 'ಶೀರ್ಷಿಕೆ 5 ರಿಂದ 100 ಅಕ್ಷರಗಳ ನಡುವೆ ಇರಬೇಕು.' : locale === 'hi' ? 'शीर्षक 5 से 100 अक्षरों के बीच होना चाहिए।' : 'Title must be between 5 and 100 characters.');
-      return;
+      if (audioUrl) {
+        trimmedTitle = `${t('post.defaultVoiceTitle')} (${new Date().toLocaleDateString()})`;
+      } else {
+        setError(t('form.titleHelp'));
+        return;
+      }
     }
 
     if (!trimmedBody && audioUrl) {
-      trimmedBody = '🎙️ Voice note';
-    } else if (trimmedBody.length < 10 || trimmedBody.length > 1500) {
-      setError(locale === 'kn' ? 'ವಿವರಣೆ 10 ರಿಂದ 1500 ಅಕ್ಷರಗಳ ನಡುವೆ ಇರಬೇಕು.' : locale === 'hi' ? 'विवरण 10 से 1500 अक्षरों के बीच होना चाहिए।' : 'Body must be between 10 and 1,500 characters.');
+      trimmedBody = t('post.defaultVoiceBody');
+    } else if (!audioUrl && (trimmedBody.length < 10 || trimmedBody.length > 1500)) {
+      setError(t('form.bodyHelp'));
       return;
     }
 
@@ -261,6 +265,7 @@ export const InlineComposer: React.FC<InlineComposerProps> = ({
                 ref={fileInputRef}
                 type="file"
                 accept="image/*"
+                capture="environment"
                 style={{ display: 'none' }}
                 onChange={handlePhotoUpload}
               />
@@ -303,13 +308,15 @@ export const InlineComposer: React.FC<InlineComposerProps> = ({
                       background: 'rgba(0,0,0,0.7)',
                       color: '#fff',
                       border: 'none',
-                      borderRadius: '4px',
-                      padding: '4px 8px',
-                      fontSize: '11px',
+                      borderRadius: '8px',
+                      padding: '10px 14px',
+                      fontSize: '14px',
+                      minHeight: '44px',
+                      minWidth: '44px',
                       cursor: 'pointer',
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '4px',
+                      gap: '6px',
                     }}
                   >
                     <Trash2 size={12} />
@@ -356,7 +363,7 @@ export const InlineComposer: React.FC<InlineComposerProps> = ({
               <button
                 type="submit"
                 className={styles.publishBtn}
-                disabled={isSubmitting || title.trim().length < 5 || body.trim().length < 10}
+                disabled={isSubmitting || (!audioUrl && (title.trim().length < 5 || body.trim().length < 10))}
               >
                 {isSubmitting
                   ? (locale === 'kn' ? 'ಪ್ರಕಟಿಸಲಾಗುತ್ತಿದೆ...' : locale === 'hi' ? 'प्रकाशित हो रहा है...' : 'Publishing...')

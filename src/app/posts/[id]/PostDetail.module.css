@@ -128,10 +128,12 @@
   background: none;
   border: none;
   color: var(--color-muted);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm, 14px);
   font-weight: 500;
   cursor: pointer;
-  padding: 6px 0;
+  padding: 8px 12px;
+  min-height: 44px;
+  min-width: 44px;
   display: inline-flex;
   align-items: center;
   gap: 6px;

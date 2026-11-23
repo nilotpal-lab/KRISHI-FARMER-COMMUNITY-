@@ -118,3 +118,27 @@ export interface PaginatedResult<T> {
   hasOlder: boolean;
   hasNewer: boolean;
 }
+
+export interface GuideSuggestion {
+  id: string;
+  guideId: string;
+  author: string;
+  text: string;
+  status: 'pending' | 'approved' | 'rejected';
+  createdAt: string;
+}
+
+export interface CropGuide {
+  id: string;
+  slug: string;
+  emoji: string;
+  imageUrl?: string;
+  names: Record<Locale, string>;
+  category: 'cereal' | 'pulse' | 'vegetable' | 'commercial' | 'fruit' | 'spice' | 'plantation';
+  season: Record<Locale, string>;
+  duration: Record<Locale, string>;
+  sowing: Record<Locale, string>;
+  fertilizer: Record<Locale, string>;
+  pestCare: Record<Locale, string>;
+  harvest: Record<Locale, string>;
+}

@@ -197,6 +197,11 @@ function PostDetailContent({ postId }: { postId: string }) {
     e.preventDefault();
     setCommentError(null);
 
+    if (!isJoined) {
+      krishiService.joinCommunity(post.communitySlug);
+      setIsJoined(true);
+    }
+
     let trimmed = commentText.trim();
     if (!trimmed && commentAudioUrl) {
       trimmed = `🎙️ ${t('post.voiceCommentText')}`;
@@ -391,58 +396,45 @@ function PostDetailContent({ postId }: { postId: string }) {
 
         {/* Comment Composer Box */}
         {isMember && (
-          <>
-            {isJoined ? (
-              <form onSubmit={handleCommentSubmit} className={styles.commentComposer} noValidate>
-                {commentError && (
-                  <div style={{ color: 'var(--color-danger)', fontSize: '14px', fontWeight: 600 }}>
-                    {commentError}
-                  </div>
-                )}
-                <Textarea
-                  label={t('comment.write')}
-                  value={commentText}
-                  onChange={(e) => setCommentText(e.target.value)}
-                  placeholder={t('post.commentPlaceholder')}
-                  required={!commentAudioUrl}
-                />
-
-                <div style={{ marginBottom: '12px' }}>
-                  <AudioRecorder
-                    maxDurationSeconds={30}
-                    audioUrl={commentAudioUrl}
-                    onAudioRecorded={setCommentAudioUrl}
-                    label={t('media.recordVoice')}
-                  />
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
-                  <div style={{ width: '160px' }}>
-                    <Select
-                      label={t('post.language')}
-                      value={commentLang}
-                      onChange={(e) => setCommentLang(e.target.value as Locale)}
-                    >
-                      <option value="kn">{t('lang.kannada')}</option>
-                      <option value="en">{t('lang.english')}</option>
-                      <option value="hi">{t('lang.hindi')}</option>
-                    </Select>
-                  </div>
-                  <Button type="submit" variant="solid" isLoading={isSubmittingComment}>
-                    {t('comment.post')}
-                  </Button>
-                </div>
-              </form>
-            ) : (
-              <div style={{ textAlign: 'center', padding: '16px', backgroundColor: 'var(--color-paper)', borderRadius: 'var(--radius-control)' }}>
-                <p style={{ marginBottom: '12px', fontSize: '14px', color: 'var(--color-muted)' }}>
-                  {t('form.joinToCommentNotice')}
-                </p>
-                <Button variant="solid" onClick={handleJoinAndRefresh}>
-                  {t('group.join')}
-                </Button>
+          <form onSubmit={handleCommentSubmit} className={styles.commentComposer} noValidate>
+            {commentError && (
+              <div style={{ color: 'var(--color-danger)', fontSize: '14px', fontWeight: 600 }}>
+                {commentError}
               </div>
             )}
-          </>
+            <Textarea
+              label={t('comment.write')}
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+              placeholder={t('post.commentPlaceholder')}
+              required={!commentAudioUrl}
+            />
+
+            <div style={{ marginBottom: '12px' }}>
+              <AudioRecorder
+                maxDurationSeconds={30}
+                audioUrl={commentAudioUrl}
+                onAudioRecorded={setCommentAudioUrl}
+                label={t('media.recordVoice')}
+              />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+              <div style={{ width: '160px' }}>
+                <Select
+                  label={t('post.language')}
+                  value={commentLang}
+                  onChange={(e) => setCommentLang(e.target.value as Locale)}
+                >
+                  <option value="kn">{t('lang.kannada')}</option>
+                  <option value="en">{t('lang.english')}</option>
+                  <option value="hi">{t('lang.hindi')}</option>
+                </Select>
+              </div>
+              <Button type="submit" variant="solid" isLoading={isSubmittingComment}>
+                {t('comment.post')}
+              </Button>
+            </div>
+          </form>
         )}
 
         {isGuest && (

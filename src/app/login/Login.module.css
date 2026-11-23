@@ -69,11 +69,13 @@
   background: none;
   border: none;
   color: var(--color-leaf);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm, 14px);
   font-weight: 600;
   cursor: pointer;
-  padding: 4px 0;
-  min-height: 24px;
+  padding: 8px 12px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .showPasswordBtn:hover {

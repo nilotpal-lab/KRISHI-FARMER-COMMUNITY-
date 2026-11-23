@@ -71,8 +71,8 @@ export default function WelcomePage() {
     }
     // 2. Update context state
     setLocale(code);
-    // 3. Navigate to login
-    router.push('/login');
+    // 3. Navigate directly to the forum / home feed in guest mode
+    router.push('/');
   };
 
   const handleSpeak = (e: React.MouseEvent, lang: LanguageOption) => {
@@ -124,18 +124,25 @@ export default function WelcomePage() {
             />
           </div>
           <span className={styles.brandEyebrow}>KRISHI · ಕೃಷಿ · कृषि</span>
-          <h1 className={styles.title}>{t('welcome.title')}</h1>
-          <p className={styles.subtitle}>{t('welcome.subtitle')}</p>
+          <h1 className={styles.title}>ಸುಸ್ವಾಗತ · स्वागत है · Welcome</h1>
+          <p className={styles.subtitle}>ನಿಮ್ಮ ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ · अपनी भाषा चुनें · Choose your language</p>
         </header>
 
         <section className={styles.cardList} aria-label={t('welcome.subtitle')}>
           {LANGUAGES.map((lang) => {
             const isSpeaking = activeSpeaking === lang.code;
             return (
-              <button
+              <div
                 key={lang.code}
-                type="button"
+                role="button"
+                tabIndex={0}
                 onClick={() => handleSelectLanguage(lang.code)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleSelectLanguage(lang.code);
+                  }
+                }}
                 className={`${styles.card} ${lang.className}`}
               >
                 <div className={styles.cardLeft}>
@@ -164,7 +171,7 @@ export default function WelcomePage() {
                   )}
                   <ChevronRight size={20} className={styles.chevronIcon} aria-hidden="true" />
                 </div>
-              </button>
+              </div>
             );
           })}
         </section>

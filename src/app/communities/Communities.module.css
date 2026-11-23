@@ -44,13 +44,16 @@
   background-color: transparent;
   border: 1px solid transparent;
   color: var(--p-muted, #4b5d52);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  padding: 6px 14px;
-  border-radius: var(--radius-sm, 6px);
+  padding: 10px 18px;
+  border-radius: var(--radius-sm, 8px);
   cursor: pointer;
   transition: all var(--transition-fast, 140ms ease);
-  min-height: 36px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   user-select: none;
 }
 
@@ -215,14 +218,19 @@
 }
 
 .joinBtn {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid var(--p-action, #1f5134);
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1.5px solid var(--p-action, #1f5134);
   background: transparent;
   color: var(--p-action, #1f5134);
   cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: all var(--transition-fast, 140ms ease);
 }
 
@@ -232,14 +240,19 @@
 }
 
 .joinedBtn {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
+  padding: 10px 16px;
+  border-radius: 8px;
   border: 1px solid transparent;
   background: var(--color-mint, #e9efe8);
   color: var(--p-action, #1f5134);
   cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: all var(--transition-fast, 140ms ease);
 }
 
@@ -250,13 +263,17 @@
 }
 
 .openLink {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--p-action, #1f5134);
   text-decoration: none;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 10px 14px;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  gap: 6px;
 }
 
 .openLink:hover {

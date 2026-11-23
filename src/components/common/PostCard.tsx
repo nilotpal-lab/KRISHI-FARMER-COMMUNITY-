@@ -109,6 +109,16 @@ export const PostCard: React.FC<PostCardProps> = ({ post, community }) => {
     }
   };
 
+  const playPostTTS = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (typeof window === 'undefined' || !window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(`${activeTitle}. ${activeBody}`);
+    utterance.lang = locale === 'kn' ? 'kn-IN' : locale === 'hi' ? 'hi-IN' : 'en-IN';
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
+  };
+
   return (
     <article className="card card--row" data-edge-free>
       <div className={styles.metaHeader}>
@@ -162,43 +172,20 @@ export const PostCard: React.FC<PostCardProps> = ({ post, community }) => {
         </div>
       )}
 
-      {/* Inset visual UI fragment with real crop photograph */}
+      {/* Clean real crop photograph without obscuring overlay */}
       <div
         className="panel panel--inset"
         role="img"
         aria-label={post.imageAlt || `Field observations: ${activeTitle}`}
-        style={{ position: 'relative', overflow: 'hidden' }}
+        style={{ position: 'relative', overflow: 'hidden', borderRadius: '8px' }}
       >
         <img
           src={post.imageUrl || '/assets/crops/paddy_mandya.jpg'}
           alt={post.imageAlt || activeTitle}
           className="frame__img"
           loading="lazy"
+          style={{ width: '100%', maxHeight: '280px', objectFit: 'cover', display: 'block' }}
         />
-        <div className="stage" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="at-rise fit">
-            <div
-              className="d-card"
-              aria-hidden="true"
-              style={{
-                background: 'rgba(255, 255, 255, 0.94)',
-                backdropFilter: 'blur(8px)',
-                boxShadow: '0 4px 14px rgba(0, 0, 0, 0.1)',
-              }}
-            >
-              <div className="d-card__row">
-                <h5>{groupName}</h5>
-                <span className="d-chip">{langLabel}</span>
-              </div>
-              <div className="d-note__line">
-                <i>✓</i>
-                <span>
-                  {t('post.fieldPhoto', { group: groupName })}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Reddit & Twitter style Forum Action Bar */}
@@ -212,6 +199,16 @@ export const PostCard: React.FC<PostCardProps> = ({ post, community }) => {
           >
             <span>▲</span>
             <span>{upvotes} {locale === 'kn' ? 'ಉಪಯುಕ್ತ' : locale === 'hi' ? 'उपयोगी' : 'Helpful'}</span>
+          </button>
+
+          <button
+            type="button"
+            className={styles.ttsBtn}
+            onClick={playPostTTS}
+            title={locale === 'kn' ? 'ಧ್ವನಿ ಆಲಿಸಿ' : locale === 'hi' ? 'पोस्ट सुनें' : 'Listen to post'}
+            aria-label="Listen to post"
+          >
+            🔊 <span>{locale === 'kn' ? 'ಆಲಿಸಿ' : locale === 'hi' ? 'सुनें' : 'Listen'}</span>
           </button>
 
           <Link href={`/posts/${post.id}`} className={styles.actionPill}>

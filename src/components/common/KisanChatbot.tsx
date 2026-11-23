@@ -42,6 +42,11 @@ export const KisanChatbot: React.FC = () => {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null);
   const audioPlayerRef = useRef<HTMLAudioElement | null>(null);
+  const accumulatedSpeechRef = useRef('');
+  const hasSubmittedVoiceRef = useRef(false);
+  const isSubmittingRef = useRef(false);
+  const lastQueryRef = useRef('');
+  const lastQueryTimeRef = useRef(0);
 
   // Internal-only container scroll: stops entire page from jumping or scrolling
   useEffect(() => {
@@ -275,7 +280,7 @@ export const KisanChatbot: React.FC = () => {
   };
 
   // Toggle voice input with clean start/stop & sound off
-  const stopVoiceInput = () => {
+  const stopVoiceInput = (shouldSubmit: boolean = true) => {
     if (recognitionRef.current) {
       try {
         recognitionRef.current.abort();
@@ -284,11 +289,21 @@ export const KisanChatbot: React.FC = () => {
     }
     setIsListening(false);
     playBeep(false); // Listening sound off
+
+    if (shouldSubmit && !hasSubmittedVoiceRef.current) {
+      const speech = (accumulatedSpeechRef.current || inputValue).trim();
+      if (speech) {
+        hasSubmittedVoiceRef.current = true;
+        accumulatedSpeechRef.current = '';
+        setInputValue('');
+        handleSend(speech);
+      }
+    }
   };
 
   const toggleVoiceInput = () => {
     if (isListening) {
-      stopVoiceInput();
+      stopVoiceInput(true);
       return;
     }
     startVoiceInput();
@@ -296,6 +311,8 @@ export const KisanChatbot: React.FC = () => {
 
   const startVoiceInput = () => {
     if (typeof window === 'undefined') return;
+    stopAudio(); // Stop any active bot speech immediately so mic doesn't capture it
+
     const SpeechRecognition =
       (window as unknown as { SpeechRecognition?: any }).SpeechRecognition ||
       (window as unknown as { webkitSpeechRecognition?: any }).webkitSpeechRecognition;
@@ -311,6 +328,13 @@ export const KisanChatbot: React.FC = () => {
       return;
     }
 
+    if (recognitionRef.current) {
+      try {
+        recognitionRef.current.abort();
+      } catch {}
+      recognitionRef.current = null;
+    }
+
     try {
       const recognition = new SpeechRecognition();
       recognitionRef.current = recognition;
@@ -318,18 +342,23 @@ export const KisanChatbot: React.FC = () => {
       recognition.interimResults = false;
       recognition.maxAlternatives = 1;
 
+      accumulatedSpeechRef.current = '';
+      hasSubmittedVoiceRef.current = false;
       setIsListening(true);
       playBeep(true); // Listening sound on
 
       recognition.onresult = (event: any) => {
-        const transcript = event.results?.[0]?.[0]?.transcript;
-        if (transcript) {
-          setInputValue(transcript);
-          handleSend(transcript);
+        let fullTranscript = '';
+        for (let i = 0; i < event.results.length; i++) {
+          if (event.results[i] && event.results[i][0]) {
+            fullTranscript += event.results[i][0].transcript;
+          }
         }
-        setIsListening(false);
-        recognitionRef.current = null;
-        playBeep(false); // Listening sound off
+        fullTranscript = fullTranscript.trim();
+        if (fullTranscript) {
+          accumulatedSpeechRef.current = fullTranscript;
+          setInputValue(fullTranscript);
+        }
       };
 
       recognition.onerror = () => {
@@ -341,6 +370,16 @@ export const KisanChatbot: React.FC = () => {
       recognition.onend = () => {
         setIsListening(false);
         recognitionRef.current = null;
+        if (!hasSubmittedVoiceRef.current) {
+          const speech = (accumulatedSpeechRef.current || inputValue).trim();
+          if (speech) {
+            hasSubmittedVoiceRef.current = true;
+            accumulatedSpeechRef.current = '';
+            setInputValue('');
+            playBeep(false); // Listening sound off
+            handleSend(speech);
+          }
+        }
       };
 
       recognition.start();
@@ -354,17 +393,46 @@ export const KisanChatbot: React.FC = () => {
   // Start a fresh new chat session ("when to add conversation in talk")
   const handleNewChat = () => {
     stopAudio();
-    stopVoiceInput();
+    stopVoiceInput(false);
     setMessages([getInitialMessage()]);
     setInputValue('');
+    accumulatedSpeechRef.current = '';
+    hasSubmittedVoiceRef.current = false;
+    isSubmittingRef.current = false;
+    lastQueryRef.current = '';
   };
 
   const handleSend = async (textToSend?: string) => {
-    const query = (textToSend || inputValue).trim();
+    const query = (textToSend !== undefined ? textToSend : inputValue).trim();
     if (!query) return;
 
+    // Strict deduplication guard: drop identical submissions within 2.5 seconds
+    const now = Date.now();
+    if (lastQueryRef.current === query && now - lastQueryTimeRef.current < 2500) {
+      return;
+    }
+
+    // Drop simultaneous in-flight race conditions
+    if (isSubmittingRef.current) {
+      return;
+    }
+
+    isSubmittingRef.current = true;
+    lastQueryRef.current = query;
+    lastQueryTimeRef.current = now;
+
+    // Stop active speech recognition if it was listening
+    if (recognitionRef.current) {
+      try {
+        recognitionRef.current.abort();
+      } catch {}
+      recognitionRef.current = null;
+      setIsListening(false);
+      hasSubmittedVoiceRef.current = true;
+    }
+
     const userMsg: Message = {
-      id: `user_${Date.now()}`,
+      id: `user_${now}`,
       sender: 'user',
       text: query,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -402,12 +470,14 @@ export const KisanChatbot: React.FC = () => {
             time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           };
           setMessages((prev) => [...prev, botMsg]);
-          setIsTyping(false);
           return;
         }
       }
     } catch {
       // Offline or network error: fallback to local safe advisory
+    } finally {
+      setIsTyping(false);
+      isSubmittingRef.current = false;
     }
 
     // Offline / fallback knowledge base
@@ -419,7 +489,6 @@ export const KisanChatbot: React.FC = () => {
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
     setMessages((prev) => [...prev, botMsg]);
-    setIsTyping(false);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -494,7 +563,7 @@ export const KisanChatbot: React.FC = () => {
                 className={styles.closeBtn}
                 onClick={() => {
                   stopAudio();
-                  stopVoiceInput();
+                  stopVoiceInput(false);
                   setIsOpen(false);
                 }}
                 aria-label="Close chat"
@@ -591,7 +660,7 @@ export const KisanChatbot: React.FC = () => {
               <button
                 type="button"
                 className={styles.stopListenBtn}
-                onClick={stopVoiceInput}
+                onClick={() => stopVoiceInput(true)}
               >
                 {locale === 'kn' ? 'ನಿಲ್ಲಿಸಿ (Off)' : locale === 'hi' ? 'रोकें (Off)' : 'Stop (Off)'}
               </button>

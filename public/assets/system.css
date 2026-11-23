@@ -711,7 +711,7 @@ html:not([data-tone="dark"]) :is(.frame--cta, .frame--lit, .footer--statement) {
 .menu-card { display: grid; gap: var(--s-3); }
 .menu-card .panel { --ratio: 56.25%; }
 
-@media (max-width: 1199px) {
+@media (max-width: 1279px) {
   .nav__links, .nav__actions { display: none; }
   /* the menu button takes the secondary button's look on a 44px tap area */
   .nav__toggle {
@@ -753,7 +753,7 @@ html:not([data-tone="dark"]) :is(.frame--cta, .frame--lit, .footer--statement) {
 }
 /* a tablet and a phone (1023 and below, ST-15): the main button stays in the bar, at the right line
    with the menu button 12px after it; the plain words go to the sheet */
-@media (max-width: 1199px) {
+@media (max-width: 1279px) {
   .nav__bar { gap: var(--s-3); }
   .nav:not(.is-open) .nav__actions { display: flex; margin-left: auto; }
   .nav:not(.is-open) .nav__actions > :not(.btn--primary) { display: none; }

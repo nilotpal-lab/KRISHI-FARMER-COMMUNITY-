@@ -94,10 +94,10 @@ export const TaskShell: React.FC<TaskShellProps> = ({
             <span className={styles.credits}>{t('footer.credits')}</span>
           </div>
         </div>
-        <KisanChatbot />
       </footer>
 
       <LanguageModal isOpen={isLangOpen} onClose={() => setIsLangOpen(false)} />
+      <KisanChatbot />
     </>
   );
 };

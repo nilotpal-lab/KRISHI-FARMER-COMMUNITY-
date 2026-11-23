@@ -436,18 +436,21 @@ export const KisanChatbot: React.FC = () => {
       {!isOpen && (
         <button
           type="button"
-          className={styles.launcherBtn}
+          className={styles.floatingLauncher}
           onClick={() => setIsOpen(true)}
           aria-label={t('chatbot.launcher')}
         >
-          <img
-            src="/assets/farmers/mascot_kisan.svg"
-            alt=""
-            className={styles.mascotImg}
-          />
+          <div className={styles.mascotThumb}>
+            <img
+              src="/assets/farmers/mascot_kisan.svg"
+              alt=""
+              className={styles.mascotImg}
+            />
+            <span className={styles.onlinePulse} aria-hidden="true" />
+          </div>
           <div className={styles.launcherText}>
             <span className={styles.launcherTitle}>{mascotTitle}</span>
-            <span className={styles.launcherSubtitle}>{t('chatbot.launcher')}</span>
+            <span className={styles.launcherSub}>{t('chatbot.launcher')}</span>
           </div>
         </button>
       )}
@@ -457,12 +460,14 @@ export const KisanChatbot: React.FC = () => {
         <div className={styles.chatWindow} role="dialog" aria-label={mascotTitle}>
           {/* Header */}
           <div className={styles.chatHeader}>
-            <div className={styles.headerMascot}>
-              <img
-                src="/assets/farmers/mascot_kisan.svg"
-                alt=""
-                className={styles.headerMascotImg}
-              />
+            <div className={styles.headerLeft}>
+              <div className={styles.headerMascot}>
+                <img
+                  src="/assets/farmers/mascot_kisan.svg"
+                  alt=""
+                  className={styles.mascotImg}
+                />
+              </div>
               <div className={styles.headerInfo}>
                 <span className={styles.headerTitle}>{mascotTitle}</span>
                 <span className={styles.headerStatus}>

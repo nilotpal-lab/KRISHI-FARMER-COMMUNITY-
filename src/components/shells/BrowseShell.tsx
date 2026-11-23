@@ -244,7 +244,6 @@ export const BrowseShell: React.FC<BrowseShellProps> = ({ children }) => {
             </div>
           </div>
         </div>
-        <KisanChatbot />
       </footer>
 
       <nav className="actionbar" data-bar="always" aria-label={t('nav.bottomNav')}>
@@ -286,6 +285,7 @@ export const BrowseShell: React.FC<BrowseShellProps> = ({ children }) => {
       </nav>
 
       <LanguageModal isOpen={isLangOpen} onClose={() => setIsLangOpen(false)} />
+      <KisanChatbot />
     </>
   );
 };

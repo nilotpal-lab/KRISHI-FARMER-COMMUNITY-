@@ -390,7 +390,16 @@ const additionalStrings: Record<Locale, Record<string, string>> = {
     'marketplace.catSeedsDesc': 'Indigenous Desi seeds, fruit saplings, and organic compost.',
     'marketplace.catProduce': '🧺 Farm Produce in Bulk',
     'marketplace.catProduceDesc': 'Direct bulk sales of paddy, onions, turmeric, and vegetables.',
-    'chatbot.chipWeather': '⛅ District Weather & Rain'
+    'chatbot.chipWeather': '⛅ District Weather & Rain',
+    'groups.locationMemberCount': '1,800 farmers',
+    'groups.topicMemberCount': '940 growers',
+    'community.alreadyExists': 'A community with this name already exists in this category.',
+    'report.ownPostError': 'You cannot report your own post.',
+    'report.alreadyResolved': 'Target report changed or already resolved.',
+    'common.requiredField': 'Required field',
+    'common.listen': 'Listen',
+    'post.listenPost': 'Listen to post',
+    'post.listenComment': 'Listen to comment'
   },
   kn: {
     'brand.title': 'ಕೃಷಿ',
@@ -770,7 +779,16 @@ const additionalStrings: Record<Locale, Record<string, string>> = {
     'marketplace.catSeedsDesc': 'ನಾಟಿ ದೇಶಿ ಬೀಜಗಳು, ಹಣ್ಣಿನ ಗಿಡಗಳು ಮತ್ತು ಸಾವಯವ ಗೊಬ್ಬರ.',
     'marketplace.catProduce': '🧺 ಸಗಟು ಬೆಳೆ ಉತ್ಪನ್ನಗಳು',
     'marketplace.catProduceDesc': 'ಭತ್ತ, ಈರುಳ್ಳಿ, ಅರಿಶಿನ ಮತ್ತು ತರಕಾರಿಗಳ ನೇರ ಸಗಟು ಮಾರಾಟ.',
-    'chatbot.chipWeather': '⛅ ಸ್ಥಳೀಯ ಹವಾಮಾನ ಮತ್ತು ಮಳೆ'
+    'chatbot.chipWeather': '⛅ ಸ್ಥಳೀಯ ಹವಾಮಾನ ಮತ್ತು ಮಳೆ',
+    'groups.locationMemberCount': '೧,೮೦೦ ರೈತರು',
+    'groups.topicMemberCount': '೯೪೦ ಬೆಳೆಗಾರರು',
+    'community.alreadyExists': 'ಈ ವರ್ಗದಲ್ಲಿ ಈ ಹೆಸರಿನ ಗುಂಪು ಈಗಾಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ.',
+    'report.ownPostError': 'ನಿಮ್ಮ ಸ್ವಂತ ಪೋಸ್ಟ್ ಅನ್ನು ನೀವು ವರದಿ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ.',
+    'report.alreadyResolved': 'ವರದಿಯನ್ನು ಈಗಾಗಲೇ ಪರಿಹರಿಸಲಾಗಿದೆ.',
+    'common.requiredField': 'ಕಡ್ಡಾಯ ಕ್ಷೇತ್ರ',
+    'common.listen': 'ಆಲಿಸಿ',
+    'post.listenPost': 'ಪೋಸ್ಟ್ ಆಲಿಸಿ',
+    'post.listenComment': 'ಪ್ರತಿಕ್ರಿಯೆ ಆಲಿಸಿ'
   },
   hi: {
     'brand.title': 'कृषि',
@@ -1150,7 +1168,16 @@ const additionalStrings: Record<Locale, Record<string, string>> = {
     'marketplace.catSeedsDesc': 'देसी बीज, फलदार पौधे और जैविक खाद।',
     'marketplace.catProduce': '🧺 थोक फसल उपज',
     'marketplace.catProduceDesc': 'धान, प्याज, हल्दी और सब्जियों की सीधी थोक बिक्री।',
-    'chatbot.chipWeather': '⛅ ज़िले का मौसम व बारिश'
+    'chatbot.chipWeather': '⛅ ज़िले का मौसम व बारिश',
+    'groups.locationMemberCount': '1,800 किसान',
+    'groups.topicMemberCount': '940 उत्पादक',
+    'community.alreadyExists': 'इस श्रेणी में इस नाम का समूह पहले से मौजूद है।',
+    'report.ownPostError': 'आप अपनी खुद की पोस्ट की शिकायत नहीं कर सकते।',
+    'report.alreadyResolved': 'शिकायत का पहले ही समाधान हो चुका है।',
+    'common.requiredField': 'अनिवार्य फ़ील्ड',
+    'common.listen': 'सुनें',
+    'post.listenPost': 'पोस्ट सुनें',
+    'post.listenComment': 'टिप्पणी सुनें'
   }
 };
 

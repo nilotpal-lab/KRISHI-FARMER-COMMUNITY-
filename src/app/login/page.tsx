@@ -196,7 +196,7 @@ function LoginPageWrapper() {
   const { t } = useI18n();
   return (
     <TaskShell backHref="/" backLabel={t('nav.home')}>
-      <Suspense fallback={<div style={{ textAlign: 'center', padding: '24px' }}>Loading...</div>}>
+      <Suspense fallback={<div style={{ textAlign: 'center', padding: '24px' }}>{t('common.loading')}</div>}>
         <LoginForm />
       </Suspense>
     </TaskShell>

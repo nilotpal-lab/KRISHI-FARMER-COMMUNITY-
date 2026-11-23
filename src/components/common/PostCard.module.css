@@ -81,7 +81,22 @@
 .actionBar {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
+  width: 100%;
+}
+
+@media (max-width: 400px) {
+  .actionBar {
+    gap: 6px;
+  }
+  .actionPill,
+  .ttsBtn {
+    flex: 1 1 calc(50% - 6px);
+    justify-content: center;
+    text-align: center;
+    padding: 8px 6px;
+  }
 }
 
 .ttsBtn {

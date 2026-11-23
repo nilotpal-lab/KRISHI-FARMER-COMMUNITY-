@@ -329,7 +329,7 @@ export const InlineComposer: React.FC<InlineComposerProps> = ({
 
           <div className={styles.cropTagRow}>
             <span className={styles.tagLabel}>
-              {locale === 'kn' ? 'ಬೆಳೆ ಟ್ಯಾಗ್:' : locale === 'hi' ? 'फसल टैग:' : 'Crop tag:'}
+              {locale === 'kn' ? 'ಬೆಳೆ ಆಯ್ಕೆಮಾಡಿ:' : locale === 'hi' ? 'फसल चुनें:' : 'Select crop:'}
             </span>
             {cropTags.map((tag) => (
               <button

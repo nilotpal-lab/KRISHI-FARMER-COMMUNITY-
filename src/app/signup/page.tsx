@@ -460,6 +460,14 @@ export default function SignupWizardPage() {
               </div>
               <div className={styles.stepContent}>
                 <div className={styles.chipsGrid}>
+                  <button
+                    type="button"
+                    onClick={() => setReadLangs([])}
+                    className={`${styles.chipItem} ${readLangs.length === 0 ? styles.chipItemActive : ''}`}
+                  >
+                    {readLangs.length === 0 && <Check size={16} />}
+                    <span>🎙️ {t('signup.voiceOnlyOption')}</span>
+                  </button>
                   {LANGUAGE_OPTIONS.map((lang) => {
                     const active = readLangs.includes(lang.code);
                     return (
@@ -488,6 +496,14 @@ export default function SignupWizardPage() {
               </div>
               <div className={styles.stepContent}>
                 <div className={styles.chipsGrid}>
+                  <button
+                    type="button"
+                    onClick={() => setWriteLangs([])}
+                    className={`${styles.chipItem} ${writeLangs.length === 0 ? styles.chipItemActive : ''}`}
+                  >
+                    {writeLangs.length === 0 && <Check size={16} />}
+                    <span>🎙️ {t('signup.voiceOnlyOption')}</span>
+                  </button>
                   {LANGUAGE_OPTIONS.map((lang) => {
                     const active = writeLangs.includes(lang.code);
                     return (

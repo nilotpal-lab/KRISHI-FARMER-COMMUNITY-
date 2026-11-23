@@ -113,6 +113,16 @@
   font-size: 13px;
 }
 
+@media (max-width: 480px) {
+  .calendarRow {
+    grid-template-columns: 1fr auto;
+    gap: 6px;
+  }
+  .calCrop {
+    grid-column: 1 / -1;
+  }
+}
+
 .calDistrict {
   font-weight: 600;
   color: var(--p-ink, #17281d);

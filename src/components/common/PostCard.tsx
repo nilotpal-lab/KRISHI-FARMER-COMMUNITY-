@@ -114,8 +114,16 @@ export const PostCard: React.FC<PostCardProps> = ({ post, community }) => {
     if (typeof window === 'undefined' || !window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(`${activeTitle}. ${activeBody}`);
-    utterance.lang = locale === 'kn' ? 'kn-IN' : locale === 'hi' ? 'hi-IN' : 'en-IN';
+    const targetLang = locale === 'kn' ? 'kn-IN' : locale === 'hi' ? 'hi-IN' : 'en-IN';
+    utterance.lang = targetLang;
     utterance.rate = 0.9;
+    const voices = window.speechSynthesis.getVoices();
+    const matchedVoice =
+      voices.find((v) => v.lang.toLowerCase() === targetLang.toLowerCase()) ||
+      voices.find((v) => v.lang.toLowerCase().startsWith(locale));
+    if (matchedVoice) {
+      utterance.voice = matchedVoice;
+    }
     window.speechSynthesis.speak(utterance);
   };
 

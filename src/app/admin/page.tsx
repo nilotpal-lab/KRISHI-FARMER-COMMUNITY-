@@ -163,7 +163,7 @@ function AdminPageWrapper() {
   const { t } = useI18n();
   return (
     <TaskShell backHref="/profile" backLabel={t('nav.account')} title={t('footer.moderation')}>
-      <Suspense fallback={<div style={{ textAlign: 'center', padding: '32px' }}>Loading queue...</div>}>
+      <Suspense fallback={<div style={{ textAlign: 'center', padding: '32px' }}>{t('common.loading')}</div>}>
         <AdminContent />
       </Suspense>
     </TaskShell>

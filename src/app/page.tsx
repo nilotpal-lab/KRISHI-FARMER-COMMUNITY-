@@ -435,15 +435,18 @@ function HomeContent() {
   );
 }
 
+function HomeFallback() {
+  const { t } = useI18n();
+  return (
+    <div className="wrap" style={{ padding: '80px 0', textAlign: 'center' }}>
+      {t('common.loading')}
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
-    <Suspense
-      fallback={
-        <div className="wrap" style={{ padding: '80px 0' }}>
-          Loading Krishi...
-        </div>
-      }
-    >
+    <Suspense fallback={<HomeFallback />}>
       <HomeContent />
     </Suspense>
   );

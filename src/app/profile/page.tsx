@@ -43,10 +43,32 @@ export default function ProfilePage() {
   if (!user) {
     return (
       <TaskShell backHref="/" backLabel={t('nav.home')}>
-        <div style={{ textAlign: 'center', padding: '32px' }}>Loading...</div>
+        <div style={{ textAlign: 'center', padding: '32px' }}>{t('common.loading')}</div>
       </TaskShell>
     );
   }
+
+  const getCropDisplayName = (cropKey: string): string => {
+    const k = cropKey.toLowerCase().trim();
+    if (k === 'tomato') return locale === 'kn' ? 'ಟೊಮೆಟೊ' : locale === 'hi' ? 'टमाटर' : 'Tomato';
+    if (k === 'paddy' || k === 'rice') return locale === 'kn' ? 'ಭತ್ತ' : locale === 'hi' ? 'धान' : 'Paddy';
+    if (k === 'cotton') return locale === 'kn' ? 'ಹತ್ತಿ' : locale === 'hi' ? 'कपास' : 'Cotton';
+    if (k === 'chilli') return locale === 'kn' ? 'ಮೆಣಸಿನಕಾಯಿ' : locale === 'hi' ? 'मिर्च' : 'Chilli';
+    if (k === 'sugarcane') return locale === 'kn' ? 'ಕಬ್ಬು' : locale === 'hi' ? 'गन्ना' : 'Sugarcane';
+    if (k === 'onion') return locale === 'kn' ? 'ಈರುಳ್ಳಿ' : locale === 'hi' ? 'प्याज' : 'Onion';
+    if (k === 'ragi' || k === 'millet') return locale === 'kn' ? 'ರಾಗಿ' : locale === 'hi' ? 'बाजरा' : 'Ragi';
+    if (k === 'groundnut') return locale === 'kn' ? 'ಕಡಲೆಕಾಯಿ' : locale === 'hi' ? 'मूंगफली' : 'Groundnut';
+    return cropKey;
+  };
+
+  const getLangDisplayName = (code: string): string => {
+    const c = code.toLowerCase();
+    if (c === 'voice_only' || c === 'none') return t('signup.voiceOnlyOption');
+    if (c === 'kn') return locale === 'kn' ? 'ಕನ್ನಡ' : locale === 'hi' ? 'कन्नड़' : 'Kannada';
+    if (c === 'hi') return locale === 'kn' ? 'ಹಿಂದಿ' : locale === 'hi' ? 'हिन्दी' : 'Hindi';
+    if (c === 'en') return locale === 'kn' ? 'ಇಂಗ್ಲಿಷ್' : locale === 'hi' ? 'अंग्रेज़ी' : 'English';
+    return code.toUpperCase();
+  };
 
   const langDisplay = locale === 'kn' ? 'ಕನ್ನಡ' : locale === 'hi' ? 'हिन्दी' : 'English';
   const isAdmin = user.role === 'admin';
@@ -107,25 +129,27 @@ export default function ProfilePage() {
             {user.crops && user.crops.length > 0 && (
               <div className={styles.rowItem}>
                 <span className={styles.rowLabel}>{t('profile.crops')}</span>
-                <span className={styles.rowValue}>{user.crops.join(', ')}</span>
-              </div>
-            )}
-            {user.readLangs && user.readLangs.length > 0 && (
-              <div className={styles.rowItem}>
-                <span className={styles.rowLabel}>{t('profile.readLanguages')}</span>
                 <span className={styles.rowValue}>
-                  {user.readLangs.map((l) => l.toUpperCase()).join(', ')}
+                  {user.crops.map((c) => getCropDisplayName(c)).join(', ')}
                 </span>
               </div>
             )}
-            {user.writeLangs && user.writeLangs.length > 0 && (
-              <div className={styles.rowItem}>
-                <span className={styles.rowLabel}>{t('profile.writeLanguages')}</span>
-                <span className={styles.rowValue}>
-                  {user.writeLangs.map((l) => l.toUpperCase()).join(', ')}
-                </span>
-              </div>
-            )}
+            <div className={styles.rowItem}>
+              <span className={styles.rowLabel}>{t('profile.readLanguages')}</span>
+              <span className={styles.rowValue}>
+                {user.readLangs && user.readLangs.length > 0
+                  ? user.readLangs.map((l) => getLangDisplayName(l)).join(', ')
+                  : t('signup.voiceOnlyOption')}
+              </span>
+            </div>
+            <div className={styles.rowItem}>
+              <span className={styles.rowLabel}>{t('profile.writeLanguages')}</span>
+              <span className={styles.rowValue}>
+                {user.writeLangs && user.writeLangs.length > 0
+                  ? user.writeLangs.map((l) => getLangDisplayName(l)).join(', ')
+                  : t('signup.voiceOnlyOption')}
+              </span>
+            </div>
           </div>
 
           {/* Admin Moderation Card if admin */}

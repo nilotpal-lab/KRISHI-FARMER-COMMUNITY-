@@ -25,7 +25,9 @@ function ComposeForm() {
   const preselectedTitle = searchParams.get('title') || '';
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const [joinedCommunities, setJoinedCommunities] = useState<Community[]>([]);
+  const [joinedCommunities, setJoinedCommunities] = useState<Community[]>(() => {
+    return krishiService.getCommunities('all', 1, 100).items;
+  });
   const [selectedGroup, setSelectedGroup] = useState<string>(preselectedGroup);
   const [title, setTitle] = useState(preselectedTitle);
   const [body, setBody] = useState('');
@@ -133,24 +135,6 @@ function ComposeForm() {
       }
     }, 250);
   };
-
-  if (joinedCommunities.length === 0) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.card} style={{ textAlign: 'center' }}>
-          <h1 className={styles.title}>{t('home.write')}</h1>
-          <p style={{ color: 'var(--color-muted)' }}>
-            {t('post.noJoinedGroups')}
-          </p>
-          <div style={{ marginTop: '16px' }}>
-            <Link href="/communities">
-              <Button variant="solid">{t('home.findGroups')}</Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className={styles.container}>
@@ -331,7 +315,7 @@ function NewPostPageWrapper() {
   const { t } = useI18n();
   return (
     <TaskShell backHref="/" backLabel={t('common.back')}>
-      <Suspense fallback={<div style={{ textAlign: 'center', padding: '32px' }}>Loading composer...</div>}>
+      <Suspense fallback={<div style={{ textAlign: 'center', padding: '32px' }}>{t('common.loading')}</div>}>
         <ComposeForm />
       </Suspense>
     </TaskShell>

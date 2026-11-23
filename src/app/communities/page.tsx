@@ -165,7 +165,7 @@ function CommunitiesContent() {
 
                 <div className={styles.cardBottomRow}>
                   <span className={styles.memberCount}>
-                    {isLocation ? '1.8k farmers' : '940 growers'}
+                    {t(isLocation ? 'groups.locationMemberCount' : 'groups.topicMemberCount')}
                   </span>
                   <div className={styles.cardActions}>
                     {isMember && (
@@ -222,10 +222,15 @@ function CommunitiesContent() {
   );
 }
 
+function CommunitiesFallback() {
+  const { t } = useI18n();
+  return <div style={{ textAlign: 'center', padding: '32px' }}>{t('common.loading')}</div>;
+}
+
 export default function CommunitiesPage() {
   return (
     <BrowseShell>
-      <Suspense fallback={<div style={{ textAlign: 'center', padding: '32px' }}>Loading groups...</div>}>
+      <Suspense fallback={<CommunitiesFallback />}>
         <CommunitiesContent />
       </Suspense>
     </BrowseShell>

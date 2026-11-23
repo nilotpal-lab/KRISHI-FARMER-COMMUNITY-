@@ -39,6 +39,16 @@ export const TaskShell: React.FC<TaskShellProps> = ({
 
           {title && <span className={styles.headerTitle}>{title}</span>}
 
+          <button
+            type="button"
+            className={styles.mobileLangBtn}
+            onClick={() => setIsLangOpen(true)}
+            aria-label={t('nav.language')}
+          >
+            <GlobeIcon size={16} />
+            <span>{langDisplay}</span>
+          </button>
+
           <div className="nav__actions" style={{ marginLeft: 'auto' }}>
             <DemoBar />
             <button

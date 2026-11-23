@@ -442,13 +442,13 @@ class MockKrishiService {
 
     const nameTrimmed = data.name.trim();
     if (nameTrimmed.length < 3 || nameTrimmed.length > 60) {
-      return { success: false, error: 'Name must be between 3 and 60 characters.' };
+      return { success: false, error: 'form.nameHelp' };
     }
     if (data.description.trim().length < 10 || data.description.trim().length > 240) {
-      return { success: false, error: 'Description must be between 10 and 240 characters.' };
+      return { success: false, error: 'form.descHelp' };
     }
     if (data.kind === 'location' && !data.stateKey) {
-      return { success: false, error: 'Please select a state or union territory.' };
+      return { success: false, error: 'form.selectState' };
     }
 
     const all = this.getItem<Community[]>(STORAGE_KEYS.COMMUNITIES, getInitialCommunities());
@@ -458,7 +458,7 @@ class MockKrishiService {
       (c) => c.kind === data.kind && (c.stateKey || '') === (data.stateKey || '') && c.name.toLowerCase() === nameTrimmed.toLowerCase()
     );
     if (isDup) {
-      return { success: false, error: 'A community with this name already exists in this category.' };
+      return { success: false, error: 'community.alreadyExists' };
     }
 
     const id = `comm_${Date.now()}`;
@@ -549,22 +549,22 @@ class MockKrishiService {
 
     const memberships = this.getMemberships(user.username);
     if (!memberships.includes(data.communitySlug)) {
-      return { success: false, error: 'form.joinToPostNotice' };
+      this.joinCommunity(data.communitySlug);
     }
 
     const titleTrimmed = data.title.trim();
     let bodyTrimmed = data.body.trim();
 
-    // If audio is provided but body is brief, allow voice post
+    // If audio is provided but body is brief, allow voice post with localized label
     if (data.audioUrl && !bodyTrimmed) {
-      bodyTrimmed = '🎙️ Voice note';
+      bodyTrimmed = data.lang === 'kn' ? '🎙️ ಧ್ವನಿ ಸಂದೇಶ' : data.lang === 'hi' ? '🎙️ वॉइस संदेश' : '🎙️ Voice note';
     }
 
     if (titleTrimmed.length < 5 || titleTrimmed.length > 100) {
-      return { success: false, error: 'Title must be between 5 and 100 characters.' };
+      return { success: false, error: 'form.titleHelp' };
     }
     if (bodyTrimmed.length < 10 || bodyTrimmed.length > 1500) {
-      return { success: false, error: 'Body must be between 10 and 1,500 characters.' };
+      return { success: false, error: 'form.bodyHelp' };
     }
 
     // Default image if not provided
@@ -706,7 +706,7 @@ class MockKrishiService {
     if (!user || user.role !== 'member') return { success: false, error: 'auth_required' };
 
     const post = this.getPostById(data.postId);
-    if (!post) return { success: false, error: 'Post not found or hidden.' };
+    if (!post) return { success: false, error: 'post.hiddenOrRemoved' };
 
     const memberships = this.getMemberships(user.username);
     if (!memberships.includes(post.communitySlug)) {
@@ -720,7 +720,7 @@ class MockKrishiService {
     }
 
     if (bodyTrimmed.length < 2 || bodyTrimmed.length > 600) {
-      return { success: false, error: 'Comment must be between 2 and 600 characters.' };
+      return { success: false, error: 'post.commentLengthError' };
     }
 
     const all = this.getItem<Comment[]>(STORAGE_KEYS.COMMENTS, getInitialComments());
@@ -759,10 +759,10 @@ class MockKrishiService {
     if (!user || user.role !== 'member') return { success: false, error: 'auth_required' };
 
     const post = this.getPostById(postId, locale);
-    if (!post) return { success: false, error: 'Post not found.' };
+    if (!post) return { success: false, error: 'post.hiddenOrRemoved' };
 
     if (post.authorUsername === user.username) {
-      return { success: false, error: 'You cannot report your own post.' };
+      return { success: false, error: 'report.ownPostError' };
     }
 
     const all = this.getItem<Report[]>(STORAGE_KEYS.REPORTS, getInitialReports());
@@ -829,7 +829,7 @@ class MockKrishiService {
     const reports = this.getItem<Report[]>(STORAGE_KEYS.REPORTS, getInitialReports());
     const targetReport = reports.find((r) => r.id === reportId);
     if (!targetReport || targetReport.status !== 'open') {
-      return { success: false, error: 'Target report changed or already resolved.' };
+      return { success: false, error: 'report.alreadyResolved' };
     }
 
     if (action === 'dismiss') {
@@ -863,7 +863,7 @@ class MockKrishiService {
   public submitGuideSuggestion(guideId: string, text: string): { success: boolean; error?: string } {
     const user = this.getCurrentUser();
     const clean = text.trim();
-    if (!clean) return { success: false, error: 'Text required' };
+    if (!clean) return { success: false, error: 'common.requiredField' };
     const all = this.getItem<GuideSuggestion[]>(STORAGE_KEYS.GUIDE_SUGGESTIONS, []);
     const suggestion: GuideSuggestion = {
       id: `sug_${Date.now()}`,

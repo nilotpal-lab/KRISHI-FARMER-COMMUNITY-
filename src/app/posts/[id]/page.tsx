@@ -31,6 +31,7 @@ function CommentItemRow({
   locale: Locale;
   formatDate: (d: string) => string;
 }) {
+  const { t } = useI18n();
   const {
     isCrossLanguage,
     showOriginal,
@@ -45,6 +46,23 @@ function CommentItemRow({
     currentLocale: locale,
     seededTranslation: comment.labels?.[locale]?.body,
   });
+
+  const playCommentTTS = () => {
+    if (typeof window === 'undefined' || !window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(displayText);
+    const targetLang = locale === 'kn' ? 'kn-IN' : locale === 'hi' ? 'hi-IN' : 'en-IN';
+    utterance.lang = targetLang;
+    utterance.rate = 0.9;
+    const voices = window.speechSynthesis.getVoices();
+    const matchedVoice =
+      voices.find((v) => v.lang.toLowerCase() === targetLang.toLowerCase()) ||
+      voices.find((v) => v.lang.toLowerCase().startsWith(locale));
+    if (matchedVoice) {
+      utterance.voice = matchedVoice;
+    }
+    window.speechSynthesis.speak(utterance);
+  };
 
   return (
     <div className={styles.commentItem}>
@@ -74,6 +92,18 @@ function CommentItemRow({
             <audio controls src={comment.audioUrl} style={{ width: '100%', height: '36px' }} />
           </div>
         )}
+      </div>
+
+      <div style={{ marginTop: '4px' }}>
+        <button
+          type="button"
+          className={styles.ttsBtn}
+          onClick={playCommentTTS}
+          title={t('post.listenComment')}
+          aria-label={t('post.listenComment')}
+        >
+          🔊 <span>{t('common.listen')}</span>
+        </button>
       </div>
     </div>
   );
@@ -249,6 +279,24 @@ function PostDetailContent({ postId }: { postId: string }) {
     }
   };
 
+  const playPostTTS = () => {
+    if (typeof window === 'undefined' || !window.speechSynthesis || !post) return;
+    window.speechSynthesis.cancel();
+    const textToSpeak = `${displayTitle || post.title}. ${displayBody || post.body}`;
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    const targetLang = locale === 'kn' ? 'kn-IN' : locale === 'hi' ? 'hi-IN' : 'en-IN';
+    utterance.lang = targetLang;
+    utterance.rate = 0.9;
+    const voices = window.speechSynthesis.getVoices();
+    const matchedVoice =
+      voices.find((v) => v.lang.toLowerCase() === targetLang.toLowerCase()) ||
+      voices.find((v) => v.lang.toLowerCase().startsWith(locale));
+    if (matchedVoice) {
+      utterance.voice = matchedVoice;
+    }
+    window.speechSynthesis.speak(utterance);
+  };
+
   return (
     <div className={styles.container}>
       {/* Full Post Article */}
@@ -277,6 +325,18 @@ function PostDetailContent({ postId }: { postId: string }) {
         <h1 className={styles.title} lang={showOriginal ? post.lang : locale}>
           {displayTitle || post.title}
         </h1>
+
+        <div style={{ margin: '4px 0 12px 0' }}>
+          <button
+            type="button"
+            className={styles.ttsBtn}
+            onClick={playPostTTS}
+            title={t('post.listenPost')}
+            aria-label={t('post.listenPost')}
+          >
+            🔊 <span>{t('post.listenPost')}</span>
+          </button>
+        </div>
 
         {post.imageUrl && (
           <div className={styles.postPhotoWrapper}>
@@ -498,7 +558,7 @@ function PostPageWrapper({ postId }: { postId: string }) {
   const { t } = useI18n();
   return (
     <TaskShell backHref="/" backLabel={t('common.back')}>
-      <Suspense fallback={<div style={{ textAlign: 'center', padding: '32px' }}>Loading discussion...</div>}>
+      <Suspense fallback={<div style={{ textAlign: 'center', padding: '32px' }}>{t('common.loading')}</div>}>
         <PostDetailContent postId={postId} />
       </Suspense>
     </TaskShell>
